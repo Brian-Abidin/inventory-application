@@ -16,7 +16,7 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: "postgresql://brian:1234@localhost:5432/game_inventory"
+    connectionString: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@localhost:${process.env.DB_PORT}/${process.env.DB_NAME}`
   });
   await client.connect();
   await client.query(SQL);
