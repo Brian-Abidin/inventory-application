@@ -2,8 +2,10 @@ const db = require("../db/queries");
 
 async function getIndex(req, res) {
   const games = await db.getAllData();
-  console.log(games);
-  res.render("index");
+  res.render("index", {
+    games: games.map((game) => game.game),
+    developers: games.map((game) => game.developers)
+  });
 }
 
 module.exports = {
