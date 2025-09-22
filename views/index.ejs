@@ -3,5 +3,10 @@
 <%- include('./partials/head.ejs') %>
 <body>
 <%- include('./partials/homepage.ejs') %>
+<div>
+    <% for (let i = 0; i < games.length; i +=1) { %>
+        <div class="game-1">Title: <%= games[i] %> Made by: <%= developers[i] %></div>
+    <% } %>
+</div>
 </body>
 </html>
