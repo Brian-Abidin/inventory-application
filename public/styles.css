@@ -5,19 +5,32 @@
 }
 
 body {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
   background-color: rgb(212, 216, 218);
+  margin: 0px 20px 0 20px;
 }
 
 .header {
-  height: 60px;
+  height: 70px;
   background-color: aqua;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 20px 0 20px;
 }
 
 h1 {
   font-size: 24px;
   font-weight: bold;
+}
+
+main {
+  background-color: purple;
+}
+
+footer {
+  height: 70px;
+  background-color: black;
 }
