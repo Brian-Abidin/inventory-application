@@ -5,6 +5,10 @@ async function getAllData() {
   return rows;
 }
 
+async function insertGame(game) {
+  await pool.query("INSERT INTO games (game) VALUES ($1)", [game]);
+}
+
 module.exports = {
   getAllData
 };
