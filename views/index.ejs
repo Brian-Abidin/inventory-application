@@ -2,11 +2,15 @@
 <html lang="en">
 <%- include('./partials/head.ejs') %>
 <body>
-<%- include('./partials/header.ejs') %>
-<div>
-    <% for (let i = 0; i < games.length; i +=1) { %>
-        <div class="game-1">Title: <%= games[i] %> Made by: <%= developers[i] %></div>
-    <% } %>
-</div>
+    <%- include('./partials/header.ejs') %>
+    <main>
+        <div class="top-content">Browse over thousands of video games</div>
+    </main>
+    <!-- <div>
+        <% for (let i = 0; i < games.length; i +=1) { %>
+            <div class="game-1">Title: <%= games[i] %> Made by: <%= developers[i] %></div>
+        <% } %>
+    </div> -->
+    <footer></footer>
 </body>
 </html>
