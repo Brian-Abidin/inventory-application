@@ -27,7 +27,14 @@ h1 {
 }
 
 main {
-  background-color: purple;
+  padding: 50px 0px 0px 0px;
+  background-color: rgb(180, 172, 180);
+}
+
+.top-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 footer {
