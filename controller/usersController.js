@@ -8,6 +8,11 @@ async function getIndex(req, res) {
   });
 }
 
+async function getGames(req, res) {
+  res.render("games");
+}
+
 module.exports = {
-  getIndex
+  getIndex,
+  getGames
 };
