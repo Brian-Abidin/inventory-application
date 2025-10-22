@@ -15,7 +15,6 @@ body {
 
 .header {
   height: 70px;
-  background-color: aqua;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,14 +26,29 @@ h1 {
 }
 
 main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
   padding: 50px 0px 0px 0px;
-  background-color: rgb(180, 172, 180);
 }
 
 .top-content {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.bottom-content {
+  margin-top: 10px;
+  background-color: aquamarine;
+  border-radius: 5px;
+}
+
+.bottom-content .top,
+.bottom-content .middle,
+.bottom-content .bottom {
+  background-color: bisque;
+  margin: 10px;
 }
 
 footer {
