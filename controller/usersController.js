@@ -12,7 +12,12 @@ async function getGames(req, res) {
   res.render("games");
 }
 
+async function getCategories(req, res) {
+  res.render("categories");
+}
+
 module.exports = {
   getIndex,
-  getGames
+  getGames,
+  getCategories
 };
