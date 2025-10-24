@@ -9,7 +9,12 @@ async function getIndex(req, res) {
 }
 
 async function getGames(req, res) {
-  res.render("games");
+  const games = await db.getAllData();
+  res.render("games", {
+    games: games.map((game) => game.game),
+    developers: games.map((game) => game.developers),
+    id: games.map((game) => game.id)
+  });
 }
 
 async function getCategories(req, res) {
