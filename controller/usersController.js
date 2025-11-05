@@ -3,7 +3,6 @@ const db = require("../db/queries");
 async function getIndex(req, res) {
   const games = await db.getAllData();
   res.render("index", {
-    greeting: "hello",
     games: games.map((game) => game.game),
     developers: games.map((game) => game.developers)
   });
@@ -25,14 +24,16 @@ async function getCategories(req, res) {
 async function getGameDetails(req, res) {
   const games = await db.getAllData();
   const { id } = req.params;
-  const isGame = games.map((game) => game.game)[id];
-  if (isGame === undefined) {
+  const gameIds = games.map((game) => game.id);
+  if (gameIds.includes(Number(id))) {
     res.render("details", {
       title: games.map((game) => game.game)[id],
       developers: games.map((game) => game.developers)[id]
     });
   } else {
-    res.render("404");
+    res.render("404", {
+      game: gameIds
+    });
   }
 }
 
