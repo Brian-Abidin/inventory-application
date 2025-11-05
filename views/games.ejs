@@ -6,7 +6,7 @@
     <main class="all-games">
         <div class="show-all-games">
             <% for(let i = 0; i < games.length; i+=1) { %>
-                <div class="game" id=<%=`${id[i]}`%>><%=games[i]%></div>
+                <a href=<%=`/games/${id[i]}`%>><div class="game" id=<%=`${id[i]}`%>><%=games[i]%></div></a>
             <%}%>
             <div class="game add-game" id="">+</div>
             <div class="game add-game" id="">+</div>
