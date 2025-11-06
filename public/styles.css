@@ -39,15 +39,22 @@ h1 {
 }
 
 .details-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-wrapper {
   margin-top: 20px;
   padding-bottom: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto 1fr;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto 1fr auto;
   grid-template-areas:
     "img title"
     "img devs"
-    "img description";
+    "img description"
+    "img genre";
   border-bottom: 1px solid black;
 }
 
@@ -57,9 +64,10 @@ h1 {
 }
 
 .game-image {
+  margin-right: 20px;
   grid-area: img;
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
   background-color: aqua;
   border: 1px solid black;
 }
@@ -68,12 +76,15 @@ h1 {
   margin-bottom: 10px;
   grid-area: title;
   font-size: 40px;
-  align-self: center;
 }
 
 .game-description {
   grid-area: description;
-  justify-content: start;
+  max-width: 500px;
+}
+
+.game-genre {
+  margin-top: 20px;
 }
 
 .bottom-content {
