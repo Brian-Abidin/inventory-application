@@ -22,18 +22,18 @@ async function getCategories(req, res) {
 }
 
 async function getGameDetails(req, res) {
-  const games = await db.getAllData();
   const { id } = req.params;
-  const gameIds = games.map((game) => game.id);
-  if (gameIds.includes(Number(id))) {
+  const gameDetails = await db.getGameInfoById(id);
+  if (gameDetails !== undefined) {
     res.render("details", {
-      title: games.map((game) => game.game)[id - 1],
-      developers: games.map((game) => game.developers)[id - 1],
-      genre: games.map((game) => game.genre)[id - 1]
+      title: gameDetails.map((game) => game.game),
+      developers: gameDetails.map((game) => game.developers),
+      genre: gameDetails.map((game) => game.genre),
+      description: gameDetails.map((game) => game.description)
     });
   } else {
     res.render("404", {
-      game: gameIds
+      game: gameDetails
     });
   }
 }
