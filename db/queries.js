@@ -9,6 +9,12 @@ async function insertGame(game) {
   await pool.query("INSERT INTO games (game) VALUES ($1)", [game]);
 }
 
+async function getGameInfoById(id) {
+  const { rows } = await pool.query(`SELECT * FROM games WHERE id = ${id}`);
+  return rows;
+}
+
 module.exports = {
-  getAllData
+  getAllData,
+  getGameInfoById
 };
