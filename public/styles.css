@@ -38,6 +38,44 @@ h1 {
   justify-content: center;
 }
 
+.details-wrapper {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "img title"
+    "img devs"
+    "img description";
+  border-bottom: 1px solid black;
+}
+
+.game-developers {
+  grid-area: devs;
+  margin-bottom: 10px;
+}
+
+.game-image {
+  grid-area: img;
+  height: 200px;
+  width: 200px;
+  background-color: aqua;
+  border: 1px solid black;
+}
+
+.details-title {
+  margin-bottom: 10px;
+  grid-area: title;
+  font-size: 40px;
+  align-self: center;
+}
+
+.game-description {
+  grid-area: description;
+  justify-content: start;
+}
+
 .bottom-content {
   margin-top: 10px;
   background-color: aquamarine;
