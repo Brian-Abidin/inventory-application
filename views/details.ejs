@@ -5,10 +5,13 @@
     <%- include('./partials/header.ejs') %>
     <main>
         <div class="details-wrapper">
-            <div class="game-image">img</div>
-            <h2 class="details-title"><%= title %></h2>
-            <div class="game-developers">Developed by: <%=developers %></div>
-            <div class="game-description">Overwatch 2 is a 2023 first-person shooter video game by Blizzard Entertainment. As a sequel and replacement to the 2016 hero shooter Overwatch, the game includes new game modes and a reduction in team size from six to five.</div>
+            <div class="game-wrapper">
+                <div class="game-image">img</div>
+                <h2 class="details-title"><%= title %></h2>
+                <div class="game-developers">Developed by: <%=developers %></div>
+                <div class="game-description"><%= description %></div>
+                <div class="game-genre">Genres: <%=genre %></div>
+            </div>
         </div>
     </main>
     <footer></footer>
