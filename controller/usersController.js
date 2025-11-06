@@ -27,8 +27,9 @@ async function getGameDetails(req, res) {
   const gameIds = games.map((game) => game.id);
   if (gameIds.includes(Number(id))) {
     res.render("details", {
-      title: games.map((game) => game.game)[id],
-      developers: games.map((game) => game.developers)[id]
+      title: games.map((game) => game.game)[id - 1],
+      developers: games.map((game) => game.developers)[id - 1],
+      genre: games.map((game) => game.genre)[id - 1]
     });
   } else {
     res.render("404", {
