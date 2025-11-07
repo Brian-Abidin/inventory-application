@@ -14,7 +14,15 @@ async function getGameInfoById(id) {
   return rows;
 }
 
+async function searchGamesByTitle(searchTerm) {
+  const { rows } = await pool.query(
+    `SELECT * FROM games WHERE game ILIKE '%${searchTerm}%'`
+  );
+  return rows;
+}
+
 module.exports = {
   getAllData,
-  getGameInfoById
+  getGameInfoById,
+  searchGamesByTitle
 };
