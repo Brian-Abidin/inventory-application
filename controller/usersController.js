@@ -26,7 +26,7 @@ async function getGameDetails(req, res) {
   const gameDetails = await db.getGameInfoById(id);
   if (gameDetails !== undefined) {
     res.render("details", {
-      title: gameDetails.map((game) => game.game),
+      title: gameDetails.map((game) => game.game).shift(),
       developers: gameDetails.map((game) => game.developers),
       genre: gameDetails.map((game) => game.genre),
       description: gameDetails.map((game) => game.description)
