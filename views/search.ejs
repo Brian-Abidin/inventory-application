@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <main class="all-games">
+        <div class="show-all-games">
+            <% for(let i = 0; i < games.length; i+=1) { %>
+                <div class="game" id=<%=`${id[i]}`%>>
+                    <a href=<%=`/games/${id[i]}`%>>
+                        <img src=<%= `../images/${games[i].toLowerCase().replaceAll(' ', '')}.jpg`%> alt="call of duty 6 cover" srcset="">
+                    </a>
+                </div>
+            <%}%>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>
