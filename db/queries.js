@@ -16,7 +16,7 @@ async function getGameInfoById(id) {
 
 async function searchGamesByTitle(searchTerm) {
   const { rows } = await pool.query(
-    `SELECT * FROM games WHERE game ILIKE '%${searchTerm}%'`
+    `SELECT * FROM games WHERE game ILIKE ('%${searchTerm}%')`
   );
   return rows;
 }
