@@ -68,7 +68,6 @@ h1 {
   margin-right: 20px;
   grid-area: img;
   height: 500px;
-  width: 500px;
   border: 1px solid black;
   object-fit: contain;
 }
@@ -97,26 +96,35 @@ h1 {
 }
 
 .all-games {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  padding: 50px 0px 10px 0px;
+  margin: 10px 0 10px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .show-all-games {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  border: 1px solid black;
-  grid-template-rows: auto-fit;
-  gap: 5px;
+  grid-template-rows: auto;
+  grid-gap: 10px;
 }
 
-.game {
-  height: 200px;
+.game,
+.game a {
+  padding: 0;
+  margin: 0;
+  max-width: 200px;
+  max-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid blue;
+}
+
+.game img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 1500px) {
