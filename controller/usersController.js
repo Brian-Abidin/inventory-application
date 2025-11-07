@@ -38,9 +38,19 @@ async function getGameDetails(req, res) {
   }
 }
 
+async function getSearch(req, res) {
+  const searchTerm = req.query.q;
+  const found = await db.searchGamesByTitle(searchTerm);
+  res.render("search", {
+    searchTerm,
+    games: found.map((game) => game.game)
+  });
+}
+
 module.exports = {
   getIndex,
   getGames,
   getCategories,
-  getGameDetails
+  getGameDetails,
+  getSearch
 };
