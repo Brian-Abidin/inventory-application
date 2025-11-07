@@ -43,7 +43,8 @@ async function getSearch(req, res) {
   const found = await db.searchGamesByTitle(searchTerm);
   res.render("search", {
     searchTerm,
-    games: found.map((game) => game.game)
+    games: found.map((game) => game.game),
+    id: found.map((game) => game.id)
   });
 }
 
