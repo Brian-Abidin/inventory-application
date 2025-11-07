@@ -49,13 +49,14 @@ h1 {
   padding-bottom: 20px;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto auto auto 1fr;
   grid-template-areas:
     "img title"
     "img devs"
     "img description"
     "img genre";
   border-bottom: 1px solid black;
+  row-gap: 10px;
 }
 
 .game-developers {
@@ -66,10 +67,10 @@ h1 {
 .game-image {
   margin-right: 20px;
   grid-area: img;
-  height: 250px;
-  width: 250px;
-  background-color: aqua;
+  height: 500px;
+  width: 500px;
   border: 1px solid black;
+  object-fit: contain;
 }
 
 .details-title {
@@ -81,10 +82,6 @@ h1 {
 .game-description {
   grid-area: description;
   max-width: 500px;
-}
-
-.game-genre {
-  margin-top: 20px;
 }
 
 .bottom-content {
