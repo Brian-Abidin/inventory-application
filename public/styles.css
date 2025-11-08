@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  color: darkslategrey;
+  color: rgb(235, 235, 235);
 }
 
 body {
@@ -9,7 +9,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
-  background-color: rgb(212, 216, 218);
+  background-color: rgb(31, 31, 31);
   margin: 0px 20px 0 20px;
 }
 
@@ -18,6 +18,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.search-input,
+.search-btn {
+  color: darkslategray;
 }
 
 h1 {
@@ -85,13 +90,11 @@ h1 {
 
 .bottom-content {
   margin-top: 10px;
-  background-color: aquamarine;
   border-radius: 5px;
 }
 
 .bottom-content .top,
 .bottom-content .bottom {
-  background-color: bisque;
   margin: 10px;
 }
 
@@ -109,7 +112,6 @@ h1 {
 .search-term {
   font-size: 25px;
   font-weight: bold;
-  color: rgb(26, 26, 26);
 }
 
 .all-games {
