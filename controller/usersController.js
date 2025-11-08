@@ -18,7 +18,21 @@ async function getGames(req, res) {
 }
 
 async function getCategories(req, res) {
-  res.render("categories");
+  const games = await db.getAllData();
+  res.render("categories", {
+    developers: new Set(
+      games
+        .map((game) => game.developers)
+        .join(",")
+        .split(",")
+    ),
+    genres: new Set(
+      games
+        .map((game) => game.genre)
+        .join(",")
+        .split(",")
+    )
+  });
 }
 
 async function getGameDetails(req, res) {
