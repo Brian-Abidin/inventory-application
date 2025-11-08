@@ -21,8 +21,19 @@ async function searchGamesByTitle(searchTerm) {
   return rows;
 }
 
+async function updateGameDetails(name, devs, genre, desc, id) {
+  await pool.query(
+    `UPDATE games SET game = ${name}, developers = ${devs}, genre = ${genre}, description = ${desc} WHERE id = ${id} `
+  );
+}
+
+async function deleteGameById(id) {
+  await pool.query(`DELETE FROM games WHERE id = ${id}`);
+}
+
 module.exports = {
   getAllData,
   getGameInfoById,
-  searchGamesByTitle
+  searchGamesByTitle,
+  updateGameDetails
 };
