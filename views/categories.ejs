@@ -4,13 +4,30 @@
 <body>
     <%- include('./partials/header.ejs') %>
     <main>
-        <div class="top-content">
+        <div class="category top-content">
             <h2>Congrats this is the categories page!</h2>
         </div>
         <div class="bottom-content">
-            <div class="top"><h3><a href="/games">All Games</a></h3></div>
-            <div class="bottom"><h3><a href="/categories">Categories</a></h3></div>
-
+            <div class="developer">
+                <h3 class="dev-title">Sort by Developer:</h3>
+                <nav>
+                    <ul>
+                        <% for(const dev of developers){ %>
+                            <li class="dev-list"><a href="/"><%= dev %></a></li>
+                        <%}%>
+                    </ul>
+                </nav>
+            </div>
+            <div class="genre">
+                <h3 class="genre-title">Sort by Genre:</h3>
+                <nav>
+                    <ul>
+                        <% for(const genre of genres){ %>
+                            <li class="genre-list"><a href="/"><%= genre %></a></li>
+                        <%}%>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </main>
     <footer></footer>
