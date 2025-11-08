@@ -83,6 +83,12 @@ h1 {
   font-size: 40px;
 }
 
+.game-description,
+.game-developers,
+.game-genre {
+  font-size: 20px;
+}
+
 .game-description {
   grid-area: description;
   max-width: 500px;
