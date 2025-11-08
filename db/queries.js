@@ -35,5 +35,6 @@ module.exports = {
   getAllData,
   getGameInfoById,
   searchGamesByTitle,
-  updateGameDetails
+  updateGameDetails,
+  deleteGameById
 };
