@@ -50,7 +50,7 @@ h1 {
 }
 
 .game-wrapper {
-  margin-top: 20px;
+  margin-top: 100px;
   padding-bottom: 20px;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -73,9 +73,9 @@ h1 {
 .game-image {
   margin-right: 20px;
   grid-area: img;
-  height: 500px;
-  border: 1px solid black;
+  height: 400px;
   object-fit: contain;
+  border: 1px solid rgb(212, 212, 212);
 }
 
 .game-title {
@@ -87,7 +87,7 @@ h1 {
 .game-description,
 .game-developers,
 .game-genre {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .game-description {
@@ -169,6 +169,9 @@ h1 {
   .show-all-games {
     grid-template-columns: repeat(4, 1fr);
   }
+  .game-image {
+    height: 300px;
+  }
   .game-title {
     font-size: 32px;
   }
@@ -182,6 +185,47 @@ h1 {
 @media screen and (max-width: 700px) {
   .show-all-games {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .show-all-games {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .game-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:
+      "img"
+      "title"
+      "devs"
+      "genre"
+      "description";
+  }
+
+  .game-image,
+  .game-title {
+    justify-self: center;
+  }
+
+  .game-description,
+  .game-developers,
+  .game-genre {
+    font-size: 16px;
+  }
+
+  .game-developers,
+  .game-image {
+    margin: 0;
+  }
+
+  .game-title {
+    font-size: 24px;
+  }
+
+  .game-image {
+    height: 350px;
   }
 }
 
