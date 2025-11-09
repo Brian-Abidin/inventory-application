@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  color: rgb(235, 235, 235);
 }
 
 body {
@@ -10,6 +9,7 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   background-color: rgb(31, 31, 31);
+  color: rgb(235, 235, 235);
 }
 
 .header {
@@ -29,6 +29,11 @@ body {
 h1 {
   font-size: 24px;
   font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(235, 235, 235);
 }
 
 .index {
@@ -75,15 +80,33 @@ ul {
   padding-bottom: 20px;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: repeat(3, auto) 1fr;
+  grid-template-rows: repeat(4, auto) 1fr;
   grid-template-areas:
     "img title"
     "img devs"
     "img description"
-    "img genre";
+    "img genre"
+    "img edit";
 
   row-gap: 10px;
   width: 80%;
+}
+
+.game-edit {
+  margin-top: 10px;
+  grid-area: edit;
+  color: darkslategray;
+}
+
+.edit-text {
+  background-color: rgb(124, 124, 124);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.edit-text:hover {
+  color: rgb(31, 31, 31);
+  background-color: lightgray;
 }
 
 .game-developers {
@@ -226,7 +249,8 @@ ul {
       "title"
       "devs"
       "genre"
-      "description";
+      "description"
+      "edit";
   }
 
   .game-image,
