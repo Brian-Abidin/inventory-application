@@ -12,7 +12,7 @@ body {
   color: rgb(235, 235, 235);
 }
 
-.header {
+header {
   height: 70px;
   display: flex;
   align-items: center;
@@ -21,14 +21,31 @@ body {
   padding: 0 20px 0 20px;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-links {
+  margin-left: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
 .search-input,
 .search-btn {
   color: darkslategray;
 }
 
+h3 {
+  font-size: 18px;
+}
+
 h1 {
   font-size: 24px;
-  font-weight: bold;
 }
 
 a {
@@ -202,6 +219,14 @@ ul {
 }
 
 @media screen and (max-width: 1500px) {
+  h3 {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
   .show-all-games {
     grid-template-columns: repeat(6, 1fr);
   }
@@ -214,6 +239,14 @@ ul {
 }
 
 @media screen and (max-width: 800px) {
+  h3 {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
   .show-all-games {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -237,6 +270,14 @@ ul {
 }
 
 @media screen and (max-width: 500px) {
+  h3 {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
   .show-all-games {
     grid-template-columns: repeat(3, 1fr);
   }
