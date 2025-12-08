@@ -31,7 +31,7 @@ async function deleteGameById(id) {
   await pool.query(`DELETE FROM games WHERE id = ${id}`);
 }
 
-async function sortGamesByGenre(genresArr) {
+async function searchGamesByGenre(genresArr) {
   await pool.query(
     `SELECT * FROM games IN (${genresArr
       .map((genre) => `'${genre}'`)
@@ -45,5 +45,5 @@ module.exports = {
   searchGamesByTitle,
   updateGameDetails,
   deleteGameById,
-  sortGamesByGenre
+  searchGamesByGenre
 };
