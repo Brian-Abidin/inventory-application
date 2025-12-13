@@ -31,13 +31,15 @@ async function deleteGameById(id) {
   await pool.query(`DELETE FROM games WHERE id = ${id}`);
 }
 
-async function searchGamesByGenre(genresArr) {
-  await pool.query(
-    `SELECT * FROM games IN (${genresArr
-      .map((genre) => `'${genre}'`)
-      .join(", ")})`
-  );
-}
+// async function searchGamesByGenre(genresArr) {
+//   console.log(genresArr.map((genre) => `'${genre}'`).join(", "), 2);
+//   const { rows } = await pool.query(
+//     `SELECT * FROM games WHERE genre IN (${genresArr
+//       .map((genre) => `'${genre}'`)
+//       .join(",")})`
+//   );
+//   return rows;
+// }
 
 module.exports = {
   getAllData,
@@ -47,3 +49,5 @@ module.exports = {
   deleteGameById,
   searchGamesByGenre
 };
+
+// NEED TO UPDATE FUNCTIONS DUE TO CHANGING RELATIONAL TABLES
