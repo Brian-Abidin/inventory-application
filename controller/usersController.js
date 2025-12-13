@@ -62,10 +62,24 @@ async function getSearch(req, res) {
   });
 }
 
+async function getGamesByGenre(req, res) {
+  const searchGenre = req.query.genre;
+  console.log("Genre:", searchGenre);
+  const found = await db.searchGamesByGenre(searchGenre.trim().split());
+  res.render("search", {
+    searchGenre,
+    games: found.map((game) => game.game),
+    id: found.map((game) => game.id)
+  });
+}
+
 module.exports = {
   getIndex,
   getGames,
   getCategories,
   getGameDetails,
-  getSearch
+  getSearch,
+  getGamesByGenre
 };
+
+// NEED TO UPDATE FUNCTIONS DUE TO CHANGING RELATIONAL TABLES
