@@ -51,3 +51,6 @@ module.exports = {
 };
 
 // NEED TO UPDATE FUNCTIONS DUE TO CHANGING RELATIONAL TABLES
+
+// query to select all name, desc, dev, and genres of all games
+// SELECT games.name, games.description, devs.name, genres.name FROM games INNER JOIN games_devs ON games.id = games_devs.game_id INNER JOIN devs ON games_devs.dev_id = devs.id INNER JOIN games_genres ON games.id = games_genres.game_id FULL JOIN genres ON games_genres.genre_id = genres.id;
