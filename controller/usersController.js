@@ -1,10 +1,42 @@
 const db = require("../db/queries");
 
+async function organizeData() {
+  const rawGames = await db.getAllData();
+  const organizedGamesMap = rawGames.reduce((acc, currentItem) => {
+    const key = currentItem.game_id;
+    // if key does not appear in the map instance
+    if (!acc.has(key)) {
+      // add a new entry with the specified key and value to the map
+      acc.set(key, {
+        game_id: key,
+        name: "",
+        description: "",
+        devs: [],
+        genres: []
+      });
+    }
+    // adding a name, description, devs, and genres to the entry
+    acc.get(key).name = currentItem.name;
+    acc.get(key).description = currentItem.description;
+    // if the dev is not already listed inside the devs array, add it
+    if (!acc.get(key).devs.includes(currentItem.dev))
+      acc.get(key).devs.push(currentItem.dev);
+    // if the genre is not already listed inside the genres array, add it
+    if (!acc.get(key).genres.includes(currentItem.genre))
+      acc.get(key).genres.push(currentItem.genre);
+    return acc;
+  }, new Map()); // initial accumulator is an empty Map
+  // converting the organized Map back into an array
+  const organizedGamesArr = Array.from(organizedGamesMap.values());
+  return organizedGamesArr;
+}
+
 async function getIndex(req, res) {
-  const games = await db.getAllData();
+  const games = await organizeData();
+  console.log(games);
   res.render("index", {
-    games: games.map((game) => game.game),
-    developers: games.map((game) => game.developers)
+    games: "hello",
+    developers: "world"
   });
 }
 
