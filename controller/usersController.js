@@ -65,17 +65,24 @@ async function getCategories(req, res) {
 
 async function getGameDetails(req, res) {
   const { id } = req.params;
-  const gameDetails = await db.getGameInfoById(id);
-  if (gameDetails !== undefined) {
+  const games = await organizeData();
+  console.log(
+    typeof id,
+    games,
+    games.find((x) => x.game_id === +id)
+  );
+  const foundGame = games.find((game) => game.game_id === +id);
+  console.log("found", foundGame);
+  if (foundGame !== undefined) {
     res.render("details", {
-      title: gameDetails.map((game) => game.name).shift(),
-      developers: gameDetails.map((game) => game.developers),
-      genre: gameDetails.map((game) => game.genre),
-      description: gameDetails.map((game) => game.description)
+      title: foundGame.name,
+      developers: foundGame.devs,
+      genre: foundGame.genres,
+      description: foundGame.description
     });
   } else {
     res.render("404", {
-      game: gameDetails
+      game: "foundGame"
     });
   }
 }
