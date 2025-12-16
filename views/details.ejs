@@ -8,9 +8,9 @@
             <div class="game-wrapper">
                 <img class="game-image" src=<%= `../images/${title.toLowerCase().replaceAll(' ', '')}.jpg`%> alt="call of duty 6 cover" srcset="">
                 <h2 class="game-title"><%= title %></h2>
-                <div class="game-developers">Developed by: <%=developers %></div>
+                <div class="game-developers">Developed by: <%=developers.join(", ") %></div>
                 <div class="game-description"><%= description %></div>
-                <div class="game-genre">Genres: <%=genre %></div>
+                <div class="game-genre">Genres: <%=genre.join(", ") %></div>
                 <div class="game-edit"><a class="edit-text" href="">Edit</a></div>
             </div>
         </div>
