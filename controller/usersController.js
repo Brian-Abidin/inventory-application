@@ -32,35 +32,31 @@ async function organizeData() {
 }
 
 async function getIndex(req, res) {
-  const games = await organizeData();
-  console.log(games);
-  res.render("index", {
-    games: "hello",
-    developers: "world"
-  });
+  res.render("index");
 }
 
 async function getGames(req, res) {
-  const games = await db.getAllData();
+  const games = await organizeData();
+  console.log(games.map((game) => game.name));
   res.render("games", {
-    games: games.map((game) => game.game),
+    games: games.map((game) => game.name),
     developers: games.map((game) => game.developers),
-    id: games.map((game) => game.id)
+    id: games.map((game) => game.game_id)
   });
 }
 
 async function getCategories(req, res) {
-  const games = await db.getAllData();
+  const games = await organizeData();
   res.render("categories", {
     developers: new Set(
       games
-        .map((game) => game.developers)
+        .map((game) => game.devs)
         .join(",")
         .split(",")
     ),
     genres: new Set(
       games
-        .map((game) => game.genre)
+        .map((game) => game.genres)
         .join(",")
         .split(",")
     )
@@ -72,7 +68,7 @@ async function getGameDetails(req, res) {
   const gameDetails = await db.getGameInfoById(id);
   if (gameDetails !== undefined) {
     res.render("details", {
-      title: gameDetails.map((game) => game.game).shift(),
+      title: gameDetails.map((game) => game.name).shift(),
       developers: gameDetails.map((game) => game.developers),
       genre: gameDetails.map((game) => game.genre),
       description: gameDetails.map((game) => game.description)
@@ -89,8 +85,8 @@ async function getSearch(req, res) {
   const found = await db.searchGamesByTitle(searchTerm);
   res.render("search", {
     searchTerm,
-    games: found.map((game) => game.game),
-    id: found.map((game) => game.id)
+    games: found.map((game) => game.name),
+    id: found.map((game) => game.game_id)
   });
 }
 
@@ -100,8 +96,8 @@ async function getGamesByGenre(req, res) {
   const found = await db.searchGamesByGenre(searchGenre.trim().split());
   res.render("search", {
     searchGenre,
-    games: found.map((game) => game.game),
-    id: found.map((game) => game.id)
+    games: found.map((game) => game.name),
+    id: found.map((game) => game.game_id)
   });
 }
 
