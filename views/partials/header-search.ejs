@@ -1,0 +1,18 @@
+<header>
+    <div class="header-left">
+        <h1 class="header-title"><a href="/">Game Inventory</a></h1>
+        <!--
+        Add an search input field that queries
+        searches and outputs the results
+        Add a shopping cart as well
+        -->
+        <div class="header-links">
+            <h3><a href="/games">All Games</a></h3>
+            <h3><a href="/categories">Categories</a></h3>
+        </div>
+    </div>
+    <form action="/search" method="GET">
+        <input class="search-input" id="search-input" type="text" name="q" placeholder="search..." autocomplete="off" value=<%= query %>>
+        <button class='search-btn' type="submit">Search</button>
+    </form>
+</header>   
