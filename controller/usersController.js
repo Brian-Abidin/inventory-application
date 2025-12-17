@@ -117,13 +117,25 @@ async function getGamesByGenre(req, res) {
   });
 }
 
+async function getGamesByDev(req, res) {
+  const searchDev = req.query.dev;
+  const games = await organizeData();
+  const foundGames = games.filter((game) => game.devs.includes(searchDev));
+  res.render("search", {
+    query: searchDev,
+    games: foundGames.map((game) => game.name),
+    id: foundGames.map((game) => game.game_id)
+  });
+}
+
 module.exports = {
   getIndex,
   getGames,
   getCategories,
   getGameDetails,
   getSearch,
-  getGamesByGenre
+  getGamesByGenre,
+  getGamesByDev
 };
 
 // NEED TO UPDATE FUNCTIONS DUE TO CHANGING RELATIONAL TABLES
