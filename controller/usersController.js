@@ -48,6 +48,7 @@ async function getGames(req, res) {
 async function getCategories(req, res) {
   const games = await organizeData();
   res.render("categories", {
+    // create a Set to prevent duplicate values
     developers: new Set(
       games
         .map((game) => game.devs)
@@ -64,6 +65,7 @@ async function getCategories(req, res) {
 }
 
 async function getGameDetails(req, res) {
+  // obtains the parameter, id, from the URL
   const { id } = req.params;
   const games = await organizeData();
   console.log(
@@ -71,6 +73,7 @@ async function getGameDetails(req, res) {
     games,
     games.find((x) => x.game_id === +id)
   );
+  // id is not a Number so turn id into a Number by placing "+" in front of variable
   const foundGame = games.find((game) => game.game_id === +id);
   console.log("found", foundGame);
   if (foundGame !== undefined) {
