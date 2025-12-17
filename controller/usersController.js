@@ -91,11 +91,11 @@ async function getGameDetails(req, res) {
 }
 
 async function getSearch(req, res) {
-  // trim and lowerCase to match with game names easier
   const searchTerm = req.query.q;
   const games = await organizeData();
   const foundGames = games.filter((game) =>
-    game.name.toLowerCase().includes(searchTerm)
+    // trim and lowerCase to match with game names easier
+    game.name.toLowerCase().includes(searchTerm.trim().toLowerCase())
   );
   console.log("FOUND", foundGames);
   res.render("search", {
