@@ -13,7 +13,7 @@
                 <nav>
                     <ul>
                         <% for(const dev of developers){ %>
-                            <li class="dev-list"><a href="/search"><%= dev %></a></li>
+                            <li class="dev-list"><a href="/search/dev/?dev=<%= dev %>"><%= dev %></a></li>
                         <%}%>
                     </ul>
                 </nav>
