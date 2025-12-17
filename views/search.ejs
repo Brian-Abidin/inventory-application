@@ -2,9 +2,9 @@
 <html lang="en">
 <%- include('./partials/head.ejs') %>
 <body>
-    <%- include('./partials/header.ejs') %>
+    <%- include('./partials/header-search.ejs') %>
     <main class="all-games">
-        <div class="search-result">Search results for:<p class="search-term">&nbsp;<%= searchTerm %></p></div>
+        <div class="search-result">Search results for:<p class="search-term">&nbsp;<%= query %></p></div>
         <div class="show-all-games">
             <% for(let i = 0; i < games.length; i+=1) { %>
                 <div class="game" id=<%=`${id[i]}`%>>
