@@ -92,7 +92,7 @@ async function getGameDetails(req, res) {
 
 async function getSearch(req, res) {
   // trim and lowerCase to match with game names easier
-  const searchTerm = req.query.q.trim().toLowerCase();
+  const searchTerm = req.query.q;
   const games = await organizeData();
   const foundGames = games.filter((game) =>
     game.name.toLowerCase().includes(searchTerm)
@@ -108,11 +108,12 @@ async function getSearch(req, res) {
 async function getGamesByGenre(req, res) {
   const searchGenre = req.query.genre;
   console.log("Genre:", searchGenre);
-  const found = await db.searchGamesByGenre(searchGenre.trim().split());
+  const games = await organizeData();
+  const foundGames = games.filter((game) => game.genres.includes(searchGenre));
   res.render("search", {
-    searchGenre,
-    games: found.map((game) => game.name),
-    id: found.map((game) => game.game_id)
+    query: searchGenre,
+    games: foundGames.map((game) => game.name),
+    id: foundGames.map((game) => game.game_id)
   });
 }
 
