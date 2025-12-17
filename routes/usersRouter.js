@@ -9,5 +9,6 @@ usersRouter.get("/categories", usersController.getCategories);
 usersRouter.get("/games/:id", usersController.getGameDetails);
 usersRouter.get("/search", usersController.getSearch);
 usersRouter.get("/search/genre", usersController.getGamesByGenre);
+usersRouter.get("/search/dev", usersController.getGamesByDev);
 
 module.exports = usersRouter;
