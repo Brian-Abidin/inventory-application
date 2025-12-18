@@ -9,7 +9,7 @@
             <% for(let i = 0; i < games.length; i+=1) { %>
                 <div class="game" id=<%=`${id[i]}`%>>
                     <a href=<%=`/games/${id[i]}`%>>
-                        <img src=<%= `/images/${games[i].toLowerCase().replaceAll(' ', '')}.jpg`%> alt="call of duty 6 cover" srcset="">
+                        <img src=<%= `/images/${games[i].toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, '')}.jpg`%> alt="call of duty 6 cover" srcset="">
                     </a>
                 </div>
             <%}%>
