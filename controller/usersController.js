@@ -54,12 +54,14 @@ async function getCategories(req, res) {
         .map((game) => game.devs)
         .join(",")
         .split(",")
+        .sort()
     ),
     genres: new Set(
       games
         .map((game) => game.genres)
         .join(",")
         .split(",")
+        .sort()
     )
   });
 }
@@ -79,8 +81,8 @@ async function getGameDetails(req, res) {
   if (foundGame !== undefined) {
     res.render("details", {
       title: foundGame.name,
-      developers: foundGame.devs,
-      genre: foundGame.genres,
+      developers: foundGame.devs.sort(),
+      genre: foundGame.genres.sort(),
       description: foundGame.description
     });
   } else {
