@@ -1,0 +1,68 @@
+<div class="modal-container" id="modal-container">
+    <div class="modal">
+        <h1>Placeholder modal Header</h1>
+        <button class="modalBtn" id="close"></button>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('open');
+    const modal_container = document.getElementById('modal_container');
+    const close = document.getElementById('close');
+
+    open.addEventListener('click', () => {
+        modal_container.classList.add('show');
+    })
+
+    close.addEventListener('click', () => {
+        modal_container.classList.remove('show');
+    })
+</script>
+
+<!--
+
+Styling for modal 
+
+.modal-container{
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3);
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vw;
+    width: 100cvw;
+}
+
+.modal{
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0.2)
+    padding: 30px 50px;
+    width: 600px;
+    max-width: 100%;
+    text-align: center;
+}
+
+button{
+    background-color: 
+    border: none;
+    border-radius: 5px;
+    color: green;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0.2);
+}
+
+.modal-container.show{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+
+
+
+-->
