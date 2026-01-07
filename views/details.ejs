@@ -11,8 +11,9 @@
                 <div class="game-developers">Developed by: <%=developers.join(", ") %></div>
                 <div class="game-description"><%= description %></div>
                 <div class="game-genre">Genres: <%=genre.join(", ") %></div>
-                <div class="game-edit"><button class="modalBtn" id="open">Edit</button></div>
-                <%- include('./partials/modal.ejs') %>
+                <div class="game-edit">
+                    <button class="modalBtn" id="open">Edit</button>
+                </div>
             </div>
         </div>
     </main>
