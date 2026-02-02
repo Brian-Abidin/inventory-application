@@ -130,6 +130,10 @@ async function getGamesByDev(req, res) {
   });
 }
 
+async function getEditGame(req, res) {
+  res.render("edit", {});
+}
+
 module.exports = {
   getIndex,
   getGames,
@@ -137,7 +141,8 @@ module.exports = {
   getGameDetails,
   getSearch,
   getGamesByGenre,
-  getGamesByDev
+  getGamesByDev,
+  getEditGame
 };
 
 // NEED TO UPDATE FUNCTIONS DUE TO CHANGING RELATIONAL TABLES
