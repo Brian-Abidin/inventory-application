@@ -83,7 +83,8 @@ async function getGameDetails(req, res) {
       title: foundGame.name,
       developers: foundGame.devs.sort(),
       genre: foundGame.genres.sort(),
-      description: foundGame.description
+      description: foundGame.description,
+      id: foundGame.id
     });
   } else {
     res.render("404", {
