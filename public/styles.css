@@ -218,16 +218,16 @@ ul {
   object-fit: cover;
 }
 
-.editBtn {
+.edit-link {
   background-color: green;
   border: none;
   border-radius: 5px;
   color: white;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0.2);
+  padding: 5px 10px 5px 10px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0.2);
 }
 
-.editBtn:hover {
+.edit-link:hover {
   cursor: grab;
 }
 
