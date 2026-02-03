@@ -218,6 +218,19 @@ ul {
   object-fit: cover;
 }
 
+.editBtn {
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0.2);
+}
+
+.editBtn:hover {
+  cursor: grab;
+}
+
 @media screen and (max-width: 1500px) {
   h3 {
     font-size: 16px;
