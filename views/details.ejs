@@ -12,7 +12,9 @@
                 <div class="game-description"><%= description %></div>
                 <div class="game-genre">Genres: <%=genre.join(", ") %></div>
                 <div class="game-edit">
-                    <button class="modalBtn" id="open">Edit</button>
+                    <form action="/edit">
+                        <button class="editBtn" id="open" type="submit">Edit</button>
+                    </form>
                 </div>
             </div>
         </div>
