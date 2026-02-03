@@ -12,9 +12,7 @@
                 <div class="game-description"><%= description %></div>
                 <div class="game-genre">Genres: <%=genre.join(", ") %></div>
                 <div class="game-edit">
-                    <form action="/edit">
-                        <button class="editBtn" id="open" type="submit">Edit</button>
-                    </form>
+                <a href="<%=`/edit/${id}`%>" class="edit-link">Edit</a>
                 </div>
             </div>
         </div>
