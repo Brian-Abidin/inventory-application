@@ -131,7 +131,23 @@ async function getGamesByDev(req, res) {
 }
 
 async function getEditGame(req, res) {
-  res.render("edit", {});
+  const { id } = req.params;
+  const games = await organizeData();
+
+  // id is not a Number so turn id into a Number by placing "+" in front of variable
+  const foundGame = games.find((game) => game.game_id === +id);
+  if (foundGame !== undefined) {
+    res.render("edit", {
+      title: foundGame.name,
+      developers: foundGame.devs.sort(),
+      genre: foundGame.genres.sort(),
+      description: foundGame.description
+    });
+  } else {
+    res.render("404", {
+      game: "foundGame"
+    });
+  }
 }
 
 module.exports = {
