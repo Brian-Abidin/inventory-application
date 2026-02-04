@@ -3,10 +3,25 @@
 <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/header.ejs') %>
-    <main class="index">
-        <div class="top-content">
-            <h2 class="edit-title">Editing: <%= title  %></h2>
-        </div>
+    <main class="edit-index">
+        <h2 class="edit-title">Editing: <%= title  %></h2>
+        <form class="edit-form" action="/submit-edit" method="POST" onsubmit="return confirm('Are you sure you want to submit this form?');">
+            <label class="edit-label" for="title">Game Title:</label>
+            <input class="edit-input" type="text" id="title" name="title" value="<%=title %>" autocomplete="off" required>
+            <label class="edit-label" for="description">Description:</label>
+            <textarea class="edit-input" type="text" id="description" name="description" autocomplete="off" required><%=description %></textarea>
+            <label class="edit-label" for="developers">Developers (maximum 3):</label>
+            <input class="edit-input" type="text" id="developers" name="developers" value="<%=developers[0] %>" autocomplete="off" required>
+            <input class="edit-input" type="text" id="developers" name="developers" value="<%=developers[1] %>" autocomplete="off">
+            <input class="edit-input" type="text" id="developers" name="developers" value="<%=developers[2] %>" autocomplete="off">
+            <label class="edit-label" for="developers">Genres (maximum 3):</label>
+            <input class="edit-input" type="text" id="genres" name="genres" value="<%=genres[0] %>" autocomplete="off" required>
+            <input class="edit-input" type="text" id="genres" name="genres" value="<%=genres[1] %>" autocomplete="off">
+            <input class="edit-input" type="text" id="genres" name="genres" value="<%=genres[2] %>" autocomplete="off">
+            <div class="edit-btn-wrapper">
+                <button class="edit-submit-btn" type="submit">Submit</button>
+            </div>
+        </form>
     </main>
     <footer></footer>
 </body>
