@@ -265,6 +265,11 @@ ul {
   padding: 5px;
 }
 
+.read-only-input {
+  background: rgb(172, 172, 172);
+  pointer-events: none;
+}
+
 textarea {
   min-width: 400px;
   min-height: 150px;
