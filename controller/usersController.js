@@ -77,7 +77,6 @@ async function getGameDetails(req, res) {
   );
   // id is not a Number so turn id into a Number by placing "+" in front of variable
   const foundGame = games.find((game) => game.game_id === +id);
-  console.log("ID", foundGame.game_id);
   console.log("found", foundGame);
   if (foundGame !== undefined) {
     res.render("details", {
@@ -142,7 +141,7 @@ async function getEditGame(req, res) {
     res.render("edit", {
       title: foundGame.name,
       developers: foundGame.devs.sort(),
-      genre: foundGame.genres.sort(),
+      genres: foundGame.genres.sort(),
       description: foundGame.description
     });
   } else {
