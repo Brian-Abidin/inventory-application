@@ -142,13 +142,20 @@ async function getEditGame(req, res) {
       title: foundGame.name,
       developers: foundGame.devs.sort(),
       genres: foundGame.genres.sort(),
-      description: foundGame.description
+      description: foundGame.description,
+      id: foundGame.game_id
     });
   } else {
     res.render("404", {
       game: "foundGame"
     });
   }
+}
+
+async function postEditGame(req, res) {
+  const details = req.body;
+  console.log("edit", details);
+  res.redirect(`/games/${details.game_id}`);
 }
 
 module.exports = {
@@ -159,7 +166,8 @@ module.exports = {
   getSearch,
   getGamesByGenre,
   getGamesByDev,
-  getEditGame
+  getEditGame,
+  postEditGame
 };
 
 // NEED TO UPDATE FUNCTIONS DUE TO CHANGING RELATIONAL TABLES
