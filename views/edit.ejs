@@ -5,7 +5,9 @@
     <%- include('./partials/header.ejs') %>
     <main class="edit-index">
         <h2 class="edit-title">Editing: <%= title  %></h2>
-        <form class="edit-form" action="/submit-edit" method="POST" onsubmit="return confirm('Are you sure you want to submit this form?');">
+        <form class="edit-form" action="/edit" method="POST" onsubmit="return confirm('Are you sure you want to submit this form?');">
+            <label class="edit-label" for="id">ID (Read Only):</label>
+            <input class="edit-input read-only-input" type="text" id="game_id" name="game_id" value="<%= id %>" readonly>
             <label class="edit-label" for="title">Game Title:</label>
             <input class="edit-input" type="text" id="title" name="title" value="<%=title %>" autocomplete="off" required>
             <label class="edit-label" for="description">Description:</label>
