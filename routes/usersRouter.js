@@ -11,5 +11,6 @@ usersRouter.get("/search", usersController.getSearch);
 usersRouter.get("/search/genre", usersController.getGamesByGenre);
 usersRouter.get("/search/dev", usersController.getGamesByDev);
 usersRouter.get("/edit/:id", usersController.getEditGame);
+usersRouter.post("/edit", usersController.postEditGame);
 
 module.exports = usersRouter;
