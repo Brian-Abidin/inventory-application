@@ -189,6 +189,10 @@ async function postEditGame(req, res) {
   res.redirect(`/games/${details.game_id}`);
 }
 
+async function getNewGame(req, res) {
+  res.render("new");
+}
+
 module.exports = {
   getIndex,
   getGames,
@@ -198,7 +202,8 @@ module.exports = {
   getGamesByGenre,
   getGamesByDev,
   getEditGame,
-  postEditGame
+  postEditGame,
+  getNewGame
 };
 
 // NEED TO UPDATE FUNCTIONS DUE TO CHANGING RELATIONAL TABLES
