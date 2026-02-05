@@ -154,7 +154,38 @@ async function getEditGame(req, res) {
 
 async function postEditGame(req, res) {
   const details = req.body;
-  console.log("edit", details);
+  const filteredDevs = details.developers.filter((dev) => dev);
+  const filteredGenres = details.genres.filter((genre) => genre);
+  await db.deleteGamesDevsRelations(details.game_id);
+  await db.deleteGamesGenresRelations(details.game_id);
+  await db.updateGamesTable(
+    details.title,
+    details.description,
+    details.game_id
+  );
+  // eslint-disable-next-line no-restricted-syntax
+  for (const dev of filteredDevs) {
+    // eslint-disable-next-line no-await-in-loop
+    await db.updateDevsTable(dev);
+  }
+  // eslint-disable-next-line no-restricted-syntax
+  for (const genre of filteredGenres) {
+    // eslint-disable-next-line no-await-in-loop
+    await db.updateGenresTable(genre);
+  }
+  // eslint-disable-next-line no-restricted-syntax
+  for (const dev of filteredDevs) {
+    // eslint-disable-next-line no-await-in-loop
+    await db.updateGamesDevsTable(details.title, dev);
+  }
+  // eslint-disable-next-line no-restricted-syntax
+  for (const genre of filteredGenres) {
+    // eslint-disable-next-line no-await-in-loop
+    await db.updateGamesGenresTable(details.title, genre);
+  }
+  await db.removeNoChildDevs();
+  await db.removeNoChildGenres();
+
   res.redirect(`/games/${details.game_id}`);
 }
 
