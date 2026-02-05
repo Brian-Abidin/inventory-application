@@ -15,11 +15,33 @@ async function updateGamesTable(name, description, id) {
   );
 }
 
-async function updateDevsTable(devs, id) {}
+async function updateDevsTable(devs) {
+  const filteredDevs = devs.filter((dev) => dev);
+  switch (filteredDevs.length) {
+    case 3:
+      await pool.query(
+        "INSERT INTO devs (name) VALUES ($1, $2, $3) ON CONFLICT (name) DO NOTHING",
+        filteredDevs
+      );
+      break;
+    case 2:
+      await pool.query(
+        "INSERT INTO devs (name) VALUES ($1, $2) ON CONFLICT (name) DO NOTHING",
+        filteredDevs
+      );
+      break;
+    default:
+      await pool.query(
+        "INSERT INTO devs (name) VALUES ($1) ON CONFLICT (name) DO NOTHING",
+        filteredDevs
+      );
+  }
+}
 
 module.exports = {
   getAllData,
-  updateGamesTable
+  updateGamesTable,
+  updateDevsTable
 };
 
 /*
