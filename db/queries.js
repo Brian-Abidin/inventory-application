@@ -15,6 +15,18 @@ async function updateGamesTable(name, description, id) {
   );
 }
 
+async function removeNoChildDevs() {
+  await pool.query(
+    "DELETE FROM devs WHERE NOT EXISTS (SELECT 1 FROM games_devs WHERE games_devs.dev_id = devs.id)"
+  );
+}
+
+async function removeNoChildGenres() {
+  await pool.query(
+    "DELETE FROM genres WHERE NOT EXISTS (SELECT 1 FROM games_genres WHERE games_genres.genre_id = genres.id)"
+  );
+}
+
 async function updateDevsTable(devs) {
   const filteredDevs = devs.filter((dev) => dev);
   switch (filteredDevs.length) {
@@ -41,7 +53,9 @@ async function updateDevsTable(devs) {
 module.exports = {
   getAllData,
   updateGamesTable,
-  updateDevsTable
+  updateDevsTable,
+  removeNoChildDevs,
+  removeNoChildGenres
 };
 
 /*
