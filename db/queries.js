@@ -41,11 +41,27 @@ async function updateGenresTable(genre) {
   );
 }
 
+async function updateGamesGenresTable(name, genre) {
+  await pool.query(
+    "INSERT INTO games_genres (game_id, genre_id) WITH t1 AS ( SELECT id FROM games WHERE name = $1), t2 AS ( SELECT id FROM genres WHERE name = $2) SELECT t1.id, t2.id FROM t1, t2",
+    [name, genre]
+  );
+}
+
+async function updateGamesDevsTable(name, dev) {
+  await pool.query(
+    "INSERT INTO games_devs (game_id, dev_id) WITH t1 AS ( SELECT id FROM games WHERE name = $1), t2 AS ( SELECT id FROM devs WHERE name = $2) SELECT t1.id, t2.id FROM t1, t2",
+    [name, dev]
+  );
+}
+
 module.exports = {
   getAllData,
   updateGamesTable,
   updateDevsTable,
   updateGenresTable,
+  updateGamesDevsTable,
+  updateGamesGenresTable,
   removeNoChildDevs,
   removeNoChildGenres
 };
