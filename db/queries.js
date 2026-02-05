@@ -28,32 +28,24 @@ async function removeNoChildGenres() {
 }
 
 async function updateDevsTable(devs) {
-  const filteredDevs = devs.filter((dev) => dev);
-  switch (filteredDevs.length) {
-    case 3:
-      await pool.query(
-        "INSERT INTO devs (name) VALUES ($1, $2, $3) ON CONFLICT (name) DO NOTHING",
-        filteredDevs
-      );
-      break;
-    case 2:
-      await pool.query(
-        "INSERT INTO devs (name) VALUES ($1, $2) ON CONFLICT (name) DO NOTHING",
-        filteredDevs
-      );
-      break;
-    default:
-      await pool.query(
-        "INSERT INTO devs (name) VALUES ($1) ON CONFLICT (name) DO NOTHING",
-        filteredDevs
-      );
-  }
+  await pool.query(
+    "INSERT INTO devs (name) VALUES ($1) ON CONFLICT (name) DO NOTHING",
+    [devs]
+  );
+}
+
+async function updateGenresTable(genre) {
+  await pool.query(
+    "INSERT INTO genres (name) VALUES ($1) ON CONFLICT (name) DO NOTHING",
+    [genre]
+  );
 }
 
 module.exports = {
   getAllData,
   updateGamesTable,
   updateDevsTable,
+  updateGenresTable,
   removeNoChildDevs,
   removeNoChildGenres
 };
