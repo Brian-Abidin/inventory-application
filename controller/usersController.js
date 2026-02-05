@@ -193,6 +193,34 @@ async function getNewGame(req, res) {
   res.render("new");
 }
 
+async function postNewGame(req, res) {
+  const details = req.body;
+  const filteredDevs = details.developers.filter((dev) => dev);
+  const filteredGenres = details.genres.filter((genre) => genre);
+  await db.insertGameTable(details.title, details.description);
+  // eslint-disable-next-line no-restricted-syntax
+  for (const dev of filteredDevs) {
+    // eslint-disable-next-line no-await-in-loop
+    await db.updateDevsTable(dev);
+  }
+  // eslint-disable-next-line no-restricted-syntax
+  for (const genre of filteredGenres) {
+    // eslint-disable-next-line no-await-in-loop
+    await db.updateGenresTable(genre);
+  }
+  // eslint-disable-next-line no-restricted-syntax
+  for (const dev of filteredDevs) {
+    // eslint-disable-next-line no-await-in-loop
+    await db.updateGamesDevsTable(details.title, dev);
+  }
+  // eslint-disable-next-line no-restricted-syntax
+  for (const genre of filteredGenres) {
+    // eslint-disable-next-line no-await-in-loop
+    await db.updateGamesGenresTable(details.title, genre);
+  }
+  res.redirect("/");
+}
+
 module.exports = {
   getIndex,
   getGames,
@@ -203,7 +231,8 @@ module.exports = {
   getGamesByDev,
   getEditGame,
   postEditGame,
-  getNewGame
+  getNewGame,
+  postNewGame
 };
 
 // NEED TO UPDATE FUNCTIONS DUE TO CHANGING RELATIONAL TABLES
