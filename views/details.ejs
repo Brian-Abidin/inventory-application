@@ -6,7 +6,10 @@
     <main>
         <div class="details-wrapper">
             <div class="game-wrapper">
-                <img class="game-image" src=<%= `../images/${title.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, '')}.jpg`%> alt="call of duty 6 cover" srcset="">
+                <div class="image-wrapper">
+                    <img class="game-image" src=<%= image %> alt="game cover" onerror="this.style.opacity = '0'" srcset="">
+                    <div class="cover-title"><%= title %></div>
+                </div>
                 <h2 class="game-title"><%= title %></h2>
                 <div class="game-developers">Developed by: <%=developers.join(", ") %></div>
                 <div class="game-description"><%= description %></div>
