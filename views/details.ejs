@@ -15,7 +15,11 @@
                 <div class="game-description"><%= description %></div>
                 <div class="game-genre">Genres: <%=genre.join(", ") %></div>
                 <div class="game-edit">
-                <a href="<%=`/edit/${id}`%>" class="edit-link">Edit</a>
+                    <a href="<%=`/edit/${id}`%>" class="edit-link">Edit</a>
+                    <form class="delete-form" action="/delete" method="POST" onsubmit="return confirm('Are you sure you delete this game?');">
+                        <input class="delete-id" type="text" id="game_id" name="game_id" value=<%=`${id}`%>>
+                        <button class="delete-button">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>
