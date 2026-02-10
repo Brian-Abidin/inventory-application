@@ -229,6 +229,29 @@ async function postNewGame(req, res) {
   res.redirect("/");
 }
 
+async function postDeleteGame(req, res) {
+  const details = req.body;
+  const games = await organizeData();
+  const gameToDelete = games.find((game) => game.game_id === +details.game_id);
+  const filteredDevs = gameToDelete.devs.filter((dev) => dev);
+  const filteredGenres = gameToDelete.genres.filter((genre) => genre);
+  await db.deleteGamesDevsRelations(gameToDelete.game_id);
+  await db.deleteGamesGenresRelations(gameToDelete.game_id);
+  // eslint-disable-next-line no-restricted-syntax
+  for (const dev of filteredDevs) {
+    // eslint-disable-next-line no-await-in-loop
+    await db.deleteDevTable(dev);
+  }
+  // eslint-disable-next-line no-restricted-syntax
+  for (const genre of filteredGenres) {
+    // eslint-disable-next-line no-await-in-loop
+    await db.deleteGenreTable(genre);
+  }
+  await db.deleteGameTable(gameToDelete.game_id);
+  console.log("THIS GAME?", gameToDelete, gameToDelete.game_id);
+  res.redirect("/");
+}
+
 module.exports = {
   getIndex,
   getGames,
@@ -240,7 +263,8 @@ module.exports = {
   getEditGame,
   postEditGame,
   getNewGame,
-  postNewGame
+  postNewGame,
+  postDeleteGame
 };
 
 // NEED TO UPDATE FUNCTIONS DUE TO CHANGING RELATIONAL TABLES
