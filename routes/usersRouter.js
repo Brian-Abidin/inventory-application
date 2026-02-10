@@ -14,5 +14,6 @@ usersRouter.get("/edit/:id", usersController.getEditGame);
 usersRouter.post("/edit", usersController.postEditGame);
 usersRouter.get("/new", usersController.getNewGame);
 usersRouter.post("/new", usersController.postNewGame);
+usersRouter.post("/delete", usersController.postDeleteGame);
 
 module.exports = usersRouter;
