@@ -55,6 +55,18 @@ async function updateGamesDevsTable(name, dev) {
   );
 }
 
+async function deleteGameTable(id) {
+  await pool.query("DELETE FROM games WHERE id = $1", [id]);
+}
+
+async function deleteDevTable(name) {
+  await pool.query("DELETE FROM devs WHERE name = $1", [name]);
+}
+
+async function deleteGenreTable(name) {
+  await pool.query("DELETE FROM genres WHERE name = $1", [name]);
+}
+
 async function deleteGamesDevsRelations(id) {
   await pool.query("DELETE FROM games_devs WHERE game_id = $1", [id]);
 }
@@ -75,6 +87,9 @@ module.exports = {
   insertGameTable,
   deleteGamesDevsRelations,
   deleteGamesGenresRelations,
+  deleteGameTable,
+  deleteDevTable,
+  deleteGenreTable,
   updateGamesTable,
   updateDevsTable,
   updateGenresTable,
