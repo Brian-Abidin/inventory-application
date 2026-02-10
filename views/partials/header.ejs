@@ -1,5 +1,5 @@
 <header>
-    <div class="header-left">
+    <div class="header-left top-header">
         <h1 class="header-title"><a href="/">Game Inventory</a></h1>
         <!--
         Add an search input field that queries
@@ -11,8 +11,14 @@
             <h3><a href="/categories">Categories</a></h3>
         </div>
     </div>
-    <form action="/search" method="GET">
+    <form class="header-search" action="/search" method="GET">
         <input class="search-input" type="text" name="q" placeholder="search..." autocomplete="off">
         <button class='search-btn' type="submit">Search</button>
     </form>
+    <div class="bottom-header">
+        <div class="header-links">
+            <h3 class="header-link-1"><a href="/games">All Games</a></h3>
+            <h3 class="header-link-2"><a href="/categories">Categories</a></h3>
+        </div>
+    </div>
 </header>   
