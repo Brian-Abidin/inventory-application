@@ -130,12 +130,26 @@ ul {
   grid-area: devs;
 }
 
-.game-image {
-  margin-right: 20px;
+.image-wrapper {
   grid-area: img;
-  height: 300px;
-  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  min-width: 200px;
+  width: fit-content;
   border: 1px solid rgb(212, 212, 212);
+  background-color: rgb(14, 14, 14);
+}
+
+.image-wrapper img {
+  z-index: 6;
+}
+
+.game-image {
+  height: 300px;
+  width: 100%;
+  object-fit: contain;
 }
 
 .game-title {
@@ -203,7 +217,7 @@ ul {
 
 .game {
   border: 1px solid rgb(231, 231, 231);
-  background-color: rgb(77, 77, 77);
+  background-color: rgb(14, 14, 14);
 }
 
 .game,
@@ -330,7 +344,7 @@ textarea {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   h3 {
     font-size: 14px;
   }
@@ -343,7 +357,7 @@ textarea {
     grid-template-columns: repeat(4, 1fr);
   }
   .game-image {
-    height: 250px;
+    height: 270px;
   }
   .game-title {
     font-size: 32px;
@@ -352,6 +366,32 @@ textarea {
   .game-developers,
   .game-genre {
     font-size: 16px;
+  }
+
+  .image-wrapper,
+  .game-title {
+    justify-self: center;
+  }
+
+  .game-developers,
+  .image-wrapper {
+    margin: 0;
+  }
+
+  .image-wrapper {
+    min-width: 0px;
+  }
+
+  .game-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:
+      "img"
+      "title"
+      "devs"
+      "genre"
+      "description"
+      "edit";
   }
 }
 
@@ -374,19 +414,7 @@ textarea {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .game-wrapper {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, auto);
-    grid-template-areas:
-      "img"
-      "title"
-      "devs"
-      "genre"
-      "description"
-      "edit";
-  }
-
-  .game-image,
+  .image-wrapper,
   .game-title {
     justify-self: center;
   }
@@ -398,7 +426,7 @@ textarea {
   }
 
   .game-developers,
-  .game-image {
+  .image-wrapper {
     margin: 0;
   }
 
@@ -417,7 +445,7 @@ textarea {
   }
 
   .game-image {
-    height: 350px;
+    height: 250px;
   }
 }
 
