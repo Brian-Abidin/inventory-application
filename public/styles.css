@@ -140,6 +140,7 @@ ul {
 }
 
 .image-wrapper {
+  position: relative;
   grid-area: img;
   display: flex;
   align-items: center;
@@ -210,7 +211,7 @@ ul {
 }
 
 .all-games {
-  margin: 10px 0 10px 0;
+  margin: 10px;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -220,45 +221,51 @@ ul {
 .show-all-games {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: auto;
+  grid-template-rows: minmax(200px, 300px);
+  grid-auto-rows: minmax(200px, 300px);
   grid-gap: 10px;
+  width: 100%;
 }
 
 .game {
-  border: 1px solid rgb(231, 231, 231);
-  background-color: rgb(14, 14, 14);
+  max-height: 300px;
+  border: 1px solid rgb(90, 90, 90);
+  border-radius: 2px;
+  background-color: rgb(26, 26, 26);
 }
 
 .game,
 .game a {
   padding: 0;
   margin: 0;
-  max-width: 200px;
-  max-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 6;
 }
 
-a {
+.game a {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
-.game img {
+.game .image-cover {
+  height: 100%;
   width: 100%;
   object-fit: cover;
   z-index: 6;
 }
 
-.image-add {
-  transform: scale(0.5);
-}
-
 .cover-title {
   position: absolute;
   z-index: 1;
+  font-size: 1.1em;
+  text-align: center;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
 }
 
 .edit-link {
@@ -429,16 +436,11 @@ textarea {
   }
 }
 
-@media screen and (max-width: 700px) {
-  .show-all-games {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 730px) {
   .top-header .header-links {
     display: none;
   }
+
   header {
     display: grid;
     grid-template-rows: auto;
@@ -447,18 +449,28 @@ textarea {
       "links links";
     padding-bottom: 5px;
   }
+
   .top-header {
     grid-area: title;
   }
+
   .header-search {
     grid-area: search;
   }
+
   .bottom-header {
     display: flex;
     align-items: center;
     justify-content: center;
     grid-area: links;
   }
+
+  .show-all-games {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 620px) {
   .show-all-games {
     grid-template-columns: repeat(3, 1fr);
   }
