@@ -529,7 +529,13 @@ textarea {
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
+  .game {
+    width: calc(170px * 0.5);
+    height: calc(270px * 0.5);
+    font-size: 10px;
+  }
+
   h3 {
     font-size: 14px;
   }
