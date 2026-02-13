@@ -233,14 +233,13 @@ ul {
 .show-all-games {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: minmax(200px, 300px);
-  grid-auto-rows: minmax(200px, 300px);
+  grid-template-rows: auto;
   grid-gap: 10px;
-  width: 100%;
 }
 
 .game {
-  max-height: 300px;
+  width: 170px;
+  height: 270px;
   border: 1px solid rgb(90, 90, 90);
   border-radius: 2px;
   background-color: rgb(26, 26, 26);
@@ -265,7 +264,7 @@ ul {
 .game .image-cover {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: fill;
   z-index: 6;
 }
 
@@ -278,6 +277,7 @@ ul {
   display: -webkit-box;
   -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
+  width: 90%;
 }
 
 .edit-link {
@@ -385,7 +385,30 @@ textarea {
   background-color: rgb(20, 87, 20);
 }
 
+@media screen and (max-width: 1750px) {
+}
+
 @media screen and (max-width: 1500px) {
+  .game {
+    width: calc(170px * 0.9);
+    height: calc(270px * 0.9);
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .game {
+    width: calc(170px * 0.85);
+    height: calc(270px * 0.85);
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .show-all-games {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+@media screen and (max-width: 1200px) {
   .show-all-games {
     grid-template-columns: repeat(6, 1fr);
   }
