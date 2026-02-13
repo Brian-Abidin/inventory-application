@@ -28,7 +28,7 @@ header {
 .header-left {
   height: 30px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -526,6 +526,38 @@ textarea {
   .game-description {
     padding-bottom: 10px;
     border-bottom: 1px solid rgb(134, 134, 134);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  h3 {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .search-input {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  h3 {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 16px;
+  }
+
+  .search-btn {
+    font-size: 12px;
+  }
+
+  .search-input {
+    width: 80px;
   }
 }
 
