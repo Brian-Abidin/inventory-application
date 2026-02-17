@@ -531,8 +531,8 @@ textarea {
 
 @media screen and (max-width: 500px) {
   .game {
-    width: calc(170px * 0.5);
-    height: calc(270px * 0.5);
+    width: calc(170px * 0.6);
+    height: calc(270px * 0.6);
     font-size: 10px;
   }
 
@@ -550,6 +550,11 @@ textarea {
 }
 
 @media screen and (max-width: 350px) {
+  .game {
+    width: calc(170px * 0.5);
+    height: calc(270px * 0.5);
+  }
+
   h3 {
     font-size: 12px;
   }
