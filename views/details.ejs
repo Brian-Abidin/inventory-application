@@ -9,18 +9,19 @@
                 <div class="image-wrapper">
                     <img class="game-image" src=<%= image %> alt="game cover" onerror="this.style.opacity = '0'" srcset="">
                     <div class="cover-title"><%= title %></div>
+                    <div class="item-quantity">Quantity: 5</div>
+                    <div class="button-wrapper">
+                        <a href="<%=`/edit/${id}`%>" class="edit-link"></a>
+                        <form class="delete-form" action="/delete" method="POST" onsubmit="return confirm('Are you sure you delete this game?');">
+                            <input class="delete-id" type="text" id="game_id" name="game_id" value=<%=`${id}`%>>
+                            <button class="delete-button"></button>
+                        </form>
+                    </div>
                 </div>
                 <h2 class="game-title"><%= title %></h2>
                 <div class="game-developers">Developed by: <%=developers.join(", ") %></div>
                 <div class="game-description"><%= description %></div>
                 <div class="game-genre">Genres: <%=genre.join(", ") %></div>
-                <div class="game-edit">
-                    <a href="<%=`/edit/${id}`%>" class="edit-link">Edit</a>
-                    <form class="delete-form" action="/delete" method="POST" onsubmit="return confirm('Are you sure you delete this game?');">
-                        <input class="delete-id" type="text" id="game_id" name="game_id" value=<%=`${id}`%>>
-                        <button class="delete-button">Delete</button>
-                    </form>
-                </div>
             </div>
         </div>
     </main>
