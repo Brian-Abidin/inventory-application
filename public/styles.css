@@ -237,16 +237,22 @@ ul {
 .show-all-games {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: auto;
+  grid-template-rows: min-content;
   grid-gap: 10px;
+  margin: 5px;
+  background-color: rgb(65, 65, 65);
+  width: fit-content;
+  height: 100%;
+  padding: 20px;
+  border-radius: 5px;
 }
 
 .game {
   width: 170px;
   height: 270px;
-  border: 1px solid rgb(90, 90, 90);
   border-radius: 2px;
   background-color: rgb(26, 26, 26);
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .game,
@@ -533,10 +539,10 @@ textarea {
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .game {
-    width: calc(170px * 0.6);
-    height: calc(270px * 0.6);
+    width: calc(170px * 0.7);
+    height: calc(270px * 0.7);
     font-size: 10px;
   }
 
