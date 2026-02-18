@@ -10,9 +10,17 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
-  background-color: rgb(31, 31, 31);
+  background-color: rgb(32, 32, 32);
   color: rgb(235, 235, 235);
   font-family: "Roboto", sans-serif;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgb(32, 32, 32) 50%
+    ),
+    url(images/banjokazooie.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 header {
@@ -20,8 +28,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(99, 99, 99);
   padding: 0px 20px 0 20px;
+  text-shadow: 1px 1px 2px black;
 }
 
 .bottom-header {
@@ -111,8 +119,8 @@ ul {
 
 .details-wrapper {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  text-shadow: 1px 1px 2px rgb(10, 10, 10);
 }
 
 .game-wrapper {
@@ -130,6 +138,8 @@ ul {
 
   row-gap: 10px;
   width: 80%;
+  border-radius: 5px;
+  padding: 20px;
 }
 
 .game-edit {
@@ -164,7 +174,6 @@ ul {
   margin-right: 20px;
   min-width: 200px;
   width: fit-content;
-  border: 1px solid rgb(212, 212, 212);
   background-color: rgb(14, 14, 14);
 }
 
@@ -176,6 +185,7 @@ ul {
   height: 300px;
   min-width: 200px;
   object-fit: fill;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .game-title {
@@ -240,7 +250,7 @@ ul {
   grid-template-rows: min-content;
   grid-gap: 10px;
   margin: 5px;
-  background-color: rgb(65, 65, 65);
+  background-color: rgb(22, 22, 22);
   width: fit-content;
   height: 100%;
   padding: 20px;
@@ -318,7 +328,6 @@ ul {
 
 .delete-button {
   font-size: 16px;
-  font-family: "Times New Roman", Times, serif;
   border: none;
   border-radius: 5px;
   color: white;
