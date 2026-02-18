@@ -7,16 +7,12 @@ function myAuthorizer(username, password) {
   return userMatches & passwordMatches;
 }
 
-function getUnauthorizedResponse(req, res) {
+function getUnauthorizedResponse(req) {
   // Check if credentials were provided but invalid
   if (req.auth) {
-    console.log(`Invalid credentials for user: ${req.auth.user}`);
-  } else {
-    console.log("No credentials provided");
+    return "Invalid credentials";
   }
-
-  // Redirect to the login page
-  res.redirect("/index"); //
+  return "No credentials provided";
 }
 
 const authMiddleware = basicAuth({
