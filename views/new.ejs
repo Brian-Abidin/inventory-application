@@ -4,20 +4,22 @@
 <body>
     <%- include('./partials/header.ejs') %>
     <main class="edit-index">
-        <h2 class="edit-title">Add a new game!</h2>
         <form class="edit-form" action="/new" method="POST" onsubmit="return confirm('Are you sure you want to submit this form?');">
+            <h2 class="edit-title">New Game Form</h2>
             <label class="edit-label" for="title">Game Title:</label>
-            <input class="edit-input" type="text" id="title" name="title" autocomplete="off" required>
+            <input class="edit-input" type="text" id="title" name="title" autocomplete="off" required placeholder="Title">
             <label class="edit-label" for="description">Description:</label>
-            <textarea class="edit-input" type="text" id="description" name="description" autocomplete="off" required></textarea>
+            <textarea class="edit-input" type="text" id="description" name="description" autocomplete="off" required placeholder="Description"></textarea>
             <label class="edit-label" for="developers">Developers (maximum 3):</label>
-            <input class="edit-input" type="text" id="developers" name="developers" autocomplete="off" required>
+            <input class="edit-input" type="text" id="developers" name="developers" autocomplete="off" required placeholder="Developer">
             <input class="edit-input" type="text" id="developers" name="developers" autocomplete="off">
             <input class="edit-input" type="text" id="developers" name="developers" autocomplete="off">
             <label class="edit-label" for="developers">Genres (maximum 3):</label>
-            <input class="edit-input" type="text" id="genres" name="genres" autocomplete="off" required>
+            <input class="edit-input" type="text" id="genres" name="genres" autocomplete="off" required placeholder="Genre">
             <input class="edit-input" type="text" id="genres" name="genres" autocomplete="off">
             <input class="edit-input" type="text" id="genres" name="genres" autocomplete="off">
+            <label class='edit-label' for="image">Choose an image to upload as the game cover (PNG, JPG)</label>
+            <input class="upload-image" type="file" id="image" name="image" accept="image/*" >
             <div class="edit-btn-wrapper">
                 <button class="edit-submit-btn" type="submit">Submit</button>
             </div>
