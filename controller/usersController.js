@@ -1,3 +1,4 @@
+const fs = require("fs");
 const db = require("../db/queries");
 
 async function organizeData() {
@@ -201,8 +202,28 @@ async function getNewGame(req, res) {
   res.render("new");
 }
 
+// function renames the randomized file name from multer to the game title's name
+function renameFile(imagesrc, gameTitle) {
+  const oldImagePath = `public/images/${imagesrc}`;
+  const newImagePath = `public/images/${gameTitle}.jpg`;
+
+  fs.rename(oldImagePath, newImagePath, (err) => {
+    if (err) {
+      console.error("Error renaming the image file:", err);
+      return;
+    }
+    console.log("File renamed successfully");
+  });
+}
+
 async function postNewGame(req, res) {
   const details = req.body;
+  renameFile(
+    // given randomized file name
+    req.file.filename,
+    // game title replacing all characters but lower case and numbers
+    details.title.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, "")
+  );
   const filteredDevs = details.developers.filter((dev) => dev);
   const filteredGenres = details.genres.filter((genre) => genre);
   await db.insertGameTable(details.title, details.description);
@@ -229,6 +250,9 @@ async function postNewGame(req, res) {
   res.redirect("/");
 }
 
+// NEED TO FIX THIS FUNCTION WHEN YOU WANT TO DELETE A GAME
+// THAT SHARES THE SAME DEVS/GENRES OF A GAME THAT ISNT MARKED FOR
+// DELETION
 async function postDeleteGame(req, res) {
   const details = req.body;
   const games = await organizeData();
