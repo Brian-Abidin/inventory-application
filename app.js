@@ -10,6 +10,7 @@ app.set("view engine", "ejs");
 
 // used to use static files in the public folder
 app.use(express.static("public"));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 // used to parse form data into req.body
 app.use(express.urlencoded({ extended: true }));
