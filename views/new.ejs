@@ -4,7 +4,7 @@
 <body>
     <%- include('./partials/header.ejs') %>
     <main class="edit-index">
-        <form class="edit-form" action="/new" method="POST" onsubmit="return confirm('Are you sure you want to submit this form?');">
+        <form class="edit-form" action="/new" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Are you sure you want to submit this form?');">
             <h2 class="edit-title">New Game Form</h2>
             <label class="edit-label" for="title">Game Title:</label>
             <input class="edit-input" type="text" id="title" name="title" autocomplete="off" required placeholder="Title">
