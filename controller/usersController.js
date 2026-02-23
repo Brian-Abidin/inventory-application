@@ -218,12 +218,16 @@ function renameFile(imagesrc, gameTitle) {
 
 async function postNewGame(req, res) {
   const details = req.body;
-  renameFile(
-    // given randomized file name
-    req.file.filename,
-    // game title replacing all characters but lower case and numbers
-    details.title.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, "")
-  );
+  console.log(details, req);
+  // check if file is submitted with form
+  if (req.file) {
+    renameFile(
+      // given randomized file name
+      req.file.filename,
+      // game title replacing all characters but lower case and numbers
+      details.title.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, "")
+    );
+  }
   const filteredDevs = details.developers.filter((dev) => dev);
   const filteredGenres = details.genres.filter((genre) => genre);
   await db.insertGameTable(details.title, details.description);
@@ -263,13 +267,19 @@ async function postDeleteGame(req, res) {
   await db.deleteGamesGenresRelations(gameToDelete.game_id);
   // eslint-disable-next-line no-restricted-syntax
   for (const dev of filteredDevs) {
-    // eslint-disable-next-line no-await-in-loop
-    await db.deleteDevTable(dev);
+    const devExist = games.filter((game) => game.devs.includes(dev));
+    if (devExist.length === 0) {
+      // eslint-disable-next-line no-await-in-loop
+      await db.deleteDevTable(dev);
+    }
   }
   // eslint-disable-next-line no-restricted-syntax
   for (const genre of filteredGenres) {
-    // eslint-disable-next-line no-await-in-loop
-    await db.deleteGenreTable(genre);
+    const genreExist = games.filter((game) => game.genres.includes(genre));
+    if (genreExist.length === 0) {
+      // eslint-disable-next-line no-await-in-loop
+      await db.deleteGenreTable(genre);
+    }
   }
   await db.deleteGameTable(gameToDelete.game_id);
   console.log("THIS GAME?", gameToDelete, gameToDelete.game_id);
