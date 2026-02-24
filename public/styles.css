@@ -94,6 +94,11 @@ a {
   color: rgb(235, 235, 235);
 }
 
+a:hover {
+  color: #bebebe;
+  transition: color 0.2s ease-in-out;
+}
+
 .index {
   display: grid;
   grid-template-columns: 1fr;
