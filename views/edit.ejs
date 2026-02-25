@@ -4,8 +4,8 @@
 <body>
     <%- include('./partials/header.ejs') %>
     <main class="edit-index">
-        <h2 class="edit-title">Editing: <%= title  %></h2>
         <form class="edit-form" action="/edit" method="POST" onsubmit="return confirm('Are you sure you want to submit this form?');">
+            <h2 class="edit-title">Editing: <%= title  %></h2>
             <label class="edit-label" for="id">ID (Read Only):</label>
             <input class="edit-input read-only-input" type="text" id="game_id" name="game_id" value="<%= id %>" readonly>
             <label class="edit-label" for="title">Game Title:</label>
@@ -20,6 +20,10 @@
             <input class="edit-input" type="text" id="genres" name="genres" value="<%=genres[0] %>" autocomplete="off" required>
             <input class="edit-input" type="text" id="genres" name="genres" value="<%=genres[1] %>" autocomplete="off">
             <input class="edit-input" type="text" id="genres" name="genres" value="<%=genres[2] %>" autocomplete="off">
+            <label class="edit-label" for="price">Enter Price (USD $):</label>
+            <input class="edit-input" type="number" id="price" name="price" min="0" step="0.01" placeholder="0.00" required>
+            <label class="edit-label" for="quantity">Enter Quantity:</label>
+            <input  class="edit-input" type="number" id="quantity" name="quantity" min="0" placeholder="0" required>
             <div class="edit-btn-wrapper">
                 <button class="edit-submit-btn" type="submit">Submit</button>
             </div>
