@@ -12,13 +12,17 @@ async function organizeData() {
         game_id: key,
         name: "",
         description: "",
+        price: "",
+        quantity: "",
         devs: [],
         genres: []
       });
     }
-    // adding a name, description, devs, and genres to the entry
+    // adding a name, description, devs, price, quantity, and genres to the entry
     acc.get(key).name = currentItem.name;
     acc.get(key).description = currentItem.description;
+    acc.get(key).price = currentItem.price;
+    acc.get(key).quantity = currentItem.quantity;
     // if the dev is not already listed inside the devs array, add it
     if (!acc.get(key).devs.includes(currentItem.dev))
       acc.get(key).devs.push(currentItem.dev);
@@ -93,6 +97,8 @@ async function getGameDetails(req, res) {
       developers: foundGame.devs.sort(),
       genre: foundGame.genres.sort(),
       description: foundGame.description,
+      quantity: foundGame.quantity,
+      price: foundGame.price,
       id: foundGame.game_id
     });
   } else {
@@ -152,6 +158,8 @@ async function getEditGame(req, res) {
       developers: foundGame.devs.sort(),
       genres: foundGame.genres.sort(),
       description: foundGame.description,
+      price: foundGame.price,
+      quantity: foundGame.quantity,
       id: foundGame.game_id
     });
   } else {
