@@ -2,7 +2,7 @@ const pool = require("./pool");
 
 async function getAllData() {
   const { rows } = await pool.query(
-    "SELECT games.id AS game_id, games.name, games.description, devs.name AS dev, genres.name AS genre FROM games INNER JOIN games_devs ON games.id = games_devs.game_id INNER JOIN devs ON games_devs.dev_id = devs.id INNER JOIN games_genres ON games.id = games_genres.game_id INNER JOIN genres ON games_genres.genre_id = genres.id"
+    "SELECT games.id AS game_id, games.name, games.description, games.quantity, games.price, devs.name AS dev, genres.name AS genre FROM games INNER JOIN games_devs ON games.id = games_devs.game_id INNER JOIN devs ON games_devs.dev_id = devs.id INNER JOIN games_genres ON games.id = games_genres.game_id INNER JOIN genres ON games_genres.genre_id = genres.id"
   );
   return rows;
 }
@@ -10,7 +10,7 @@ async function getAllData() {
 async function updateGamesTable(name, description, id, price, quantity) {
   console.log(name, description, id);
   await pool.query(
-    "UPDATE games SET name = $1, description = $2, price = $3, quantity = $4 WHERE id = $3",
+    "UPDATE games SET name = $1, description = $2, price = $3, quantity = $4 WHERE id = $5",
     [name, description, price, quantity, id]
   );
 }
