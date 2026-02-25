@@ -9,7 +9,8 @@
                 <div class="image-wrapper">
                     <img class="game-image" src=<%= image %> alt="game cover" onerror="this.style.opacity = '0'" srcset="">
                     <div class="cover-title"><%= title %></div>
-                    <div class="item-quantity">Quantity: 5</div>
+                    <div class="item-quantity">Price: $<%= price %></div>
+                    <div class="item-quantity">Quantity: <%= quantity %></div>
                     <div class="button-wrapper">
                         <a href="<%=`/edit/${id}`%>" class="edit-link"></a>
                         <form class="delete-form" action="/delete" method="POST" onsubmit="return confirm('Are you sure you delete this game?');">
