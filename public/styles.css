@@ -280,7 +280,6 @@ ul {
   grid-template-rows: min-content;
   grid-gap: 10px;
   margin: 5px;
-  background-color: rgb(22, 22, 22);
   width: fit-content;
   height: 100%;
   padding: 20px;
@@ -291,7 +290,7 @@ ul {
   width: 170px;
   height: 270px;
   border-radius: 2px;
-  background-color: rgb(26, 26, 26);
+  background-color: rgb(17, 17, 17);
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
