@@ -7,11 +7,11 @@ async function getAllData() {
   return rows;
 }
 
-async function updateGamesTable(name, description, id) {
+async function updateGamesTable(name, description, id, price, quantity) {
   console.log(name, description, id);
   await pool.query(
-    "UPDATE games SET name = $1, description = $2 WHERE id = $3",
-    [name, description, id]
+    "UPDATE games SET name = $1, description = $2, price = $3, quantity = $4 WHERE id = $3",
+    [name, description, price, quantity, id]
   );
 }
 
@@ -75,11 +75,11 @@ async function deleteGamesGenresRelations(id) {
   await pool.query("DELETE FROM games_genres WHERE game_id = $1", [id]);
 }
 
-async function insertGameTable(name, description) {
-  await pool.query("INSERT INTO games (name, description) VALUES ($1, $2)", [
-    name,
-    description
-  ]);
+async function insertGameTable(name, description, price, quantity) {
+  await pool.query(
+    "INSERT INTO games (name, description, price, quantity) VALUES ($1, $2, $3, $4)",
+    [name, description, price, quantity]
+  );
 }
 
 module.exports = {
