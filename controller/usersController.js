@@ -170,7 +170,9 @@ async function postEditGame(req, res) {
   await db.updateGamesTable(
     details.title,
     details.description,
-    details.game_id
+    details.game_id,
+    details.price,
+    details.quantity
   );
   // eslint-disable-next-line no-restricted-syntax
   for (const dev of filteredDevs) {
@@ -230,7 +232,12 @@ async function postNewGame(req, res) {
   }
   const filteredDevs = details.developers.filter((dev) => dev);
   const filteredGenres = details.genres.filter((genre) => genre);
-  await db.insertGameTable(details.title, details.description);
+  await db.insertGameTable(
+    details.title,
+    details.description,
+    details.price,
+    details.quantity
+  );
   // eslint-disable-next-line no-restricted-syntax
   for (const dev of filteredDevs) {
     // eslint-disable-next-line no-await-in-loop
