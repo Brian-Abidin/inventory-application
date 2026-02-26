@@ -44,10 +44,7 @@ async function getIndex(req, res) {
 async function getGames(req, res) {
   const games = await organizeData();
   console.log(games.map((game) => game.name));
-  const gameCoversArr = games.map(
-    (game) =>
-      `../images/${game.name.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, "")}.jpg`
-  );
+  const gameCoversArr = games.map((game) => `../images/${game.game_id}.jpg`);
   res.render("games", {
     images: gameCoversArr,
     games: games.map((game) => game.name),
@@ -91,9 +88,7 @@ async function getGameDetails(req, res) {
   console.log("found", foundGame);
   if (foundGame !== undefined) {
     res.render("details", {
-      image: `../images/${foundGame.name
-        .toLowerCase()
-        .replaceAll(/[^a-zA-Z0-9]/g, "")}.jpg`,
+      image: `../images/${foundGame.game_id}.jpg`,
       title: foundGame.name,
       developers: foundGame.devs.sort(),
       genre: foundGame.genres.sort(),
