@@ -74,6 +74,20 @@ async function getCategories(req, res) {
   });
 }
 
+async function checkFileExists(id) {
+  try {
+    fs.accessSync(
+      path.join(__dirname, "..", "public", "images", `${id}.jpg`),
+      fs.constants.F_OK
+    );
+    console.log("file exist");
+    return true;
+  } catch (err) {
+    console.error("File does not exist");
+    return false;
+  }
+}
+
 async function getGameDetails(req, res) {
   // obtains the parameter, id, from the URL
   const { id } = req.params;
@@ -85,6 +99,8 @@ async function getGameDetails(req, res) {
   );
   // id is not a Number so turn id into a Number by placing "+" in front of variable
   const foundGame = games.find((game) => game.game_id === +id);
+  const fileExists = await checkFileExists(id);
+  console.log("HEREBRO", fileExists);
   console.log("found", foundGame);
   if (foundGame !== undefined) {
     res.render("details", {
@@ -95,7 +111,8 @@ async function getGameDetails(req, res) {
       description: foundGame.description,
       quantity: foundGame.quantity,
       price: foundGame.price,
-      id: foundGame.game_id
+      id: foundGame.game_id,
+      fileExists
     });
   } else {
     res.render("404", {
@@ -200,20 +217,6 @@ async function postEditGame(req, res) {
   }
   await db.removeNoChildDevs();
   await db.removeNoChildGenres();
-
-  console.log(path.join(__dirname, "..", "public", "images", "c5.jpg"));
-  const image = "c6";
-  fs.access(
-    path.join(__dirname, "..", "public", "images", `${image}.jpg`),
-    fs.constants.F_OK,
-    (err) => {
-      if (err) {
-        console.error("file doesn't exists");
-      } else {
-        console.log("file exists");
-      }
-    }
-  );
 
   res.redirect(`/games/${details.game_id}`);
 }
