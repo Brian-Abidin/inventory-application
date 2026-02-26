@@ -255,18 +255,15 @@ async function deleteFile(filePath) {
   );
 }
 
+async function findGameIdByName(name) {
+  const games = await organizeData();
+  const foundGame = games.find((game) => game.name === name);
+  return foundGame.game_id;
+}
+
 async function postNewGame(req, res) {
   const details = req.body;
   console.log("LOOK HERE NOW", details, req);
-  // check if file is submitted with form
-  if (req.file) {
-    renameFile(
-      // given randomized file name
-      req.file.filename,
-      // game title replacing all characters but lower case and numbers
-      details.title.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, "")
-    );
-  }
   const filteredDevs = details.developers.filter((dev) => dev);
   const filteredGenres = details.genres.filter((genre) => genre);
   await db.insertGameTable(
@@ -295,6 +292,17 @@ async function postNewGame(req, res) {
     // eslint-disable-next-line no-await-in-loop
     await db.updateGamesGenresTable(details.title, genre);
   }
+
+  // check if file is submitted with form
+  if (req.file) {
+    renameFile(
+      // given randomized file name
+      req.file.filename,
+      // game title replacing all characters but lower case and numbers
+      await findGameIdByName(details.title)
+    );
+  }
+
   res.redirect("/");
 }
 
@@ -307,9 +315,7 @@ async function postDeleteGame(req, res) {
   const gameToDelete = games.find((game) => game.game_id === +details.game_id);
   const filteredDevs = gameToDelete.devs.filter((dev) => dev);
   const filteredGenres = gameToDelete.genres.filter((genre) => genre);
-  const gameImagePath = gameToDelete.name
-    .toLowerCase()
-    .replaceAll(/[^a-zA-Z0-9]/g, "");
+  const gameImagePath = gameToDelete.game_id;
 
   await db.deleteGamesDevsRelations(gameToDelete.game_id);
   await db.deleteGamesGenresRelations(gameToDelete.game_id);
