@@ -10,7 +10,7 @@
                 <div class="game" id=<%=`${id[i]}`%>>
                     <a href=<%=`/games/${id[i]}`%>>
                         <div class="cover-title"><%= games[i] %></div>
-                        <img class="image-cover" src=<%= `/images/${games[i].toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, '')}.jpg`%> onerror='this.style.opacity = "0.0"' alt="game cover" srcset="">
+                        <img class="image-cover" src=<%= `/images/${id[i]}.jpg`%> onerror='this.style.opacity = "0.0"' alt="game cover" srcset="">
                     </a>
                 </div>
             <%}%>
