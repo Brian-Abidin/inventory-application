@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const db = require("../db/queries");
 
 async function organizeData() {
@@ -226,6 +227,24 @@ function renameFile(imagesrc, gameTitle) {
   });
 }
 
+// function to delete file; primarily for game cover images
+async function deleteFile(filePath) {
+  console.log(
+    path.join(__dirname, "..", "public", "images", `${filePath}.jpg`)
+  );
+  try {
+    await fs.unlink(
+      path.join(__dirname, "..", "public", "images", `${filePath}.jpg`)
+    );
+    console.log(`File deleted successfully: ${filePath}`);
+  } catch (err) {
+    if (err.code === "ENOENT") {
+      console.log("Error deleting file:", err);
+      throw err;
+    }
+  }
+}
+
 async function postNewGame(req, res) {
   const details = req.body;
   console.log(details, req);
@@ -278,6 +297,10 @@ async function postDeleteGame(req, res) {
   const gameToDelete = games.find((game) => game.game_id === +details.game_id);
   const filteredDevs = gameToDelete.devs.filter((dev) => dev);
   const filteredGenres = gameToDelete.genres.filter((genre) => genre);
+  const gameImagePath = gameToDelete.name
+    .toLowerCase()
+    .replaceAll(/[^a-zA-Z0-9]/g, "");
+
   await db.deleteGamesDevsRelations(gameToDelete.game_id);
   await db.deleteGamesGenresRelations(gameToDelete.game_id);
   // eslint-disable-next-line no-restricted-syntax
@@ -297,6 +320,7 @@ async function postDeleteGame(req, res) {
     }
   }
   await db.deleteGameTable(gameToDelete.game_id);
+  await deleteFile(gameImagePath);
   console.log("THIS GAME?", gameToDelete, gameToDelete.game_id);
   res.redirect("/");
 }
