@@ -206,6 +206,20 @@ async function postEditGame(req, res) {
   await db.removeNoChildDevs();
   await db.removeNoChildGenres();
 
+  console.log(path.join(__dirname, "..", "public", "images", "c5.jpg"));
+  const image = "c6";
+  fs.access(
+    path.join(__dirname, "..", "public", "images", `${image}.jpg`),
+    fs.constants.F_OK,
+    (err) => {
+      if (err) {
+        console.error("file doesn't exists");
+      } else {
+        console.log("file exists");
+      }
+    }
+  );
+
   res.redirect(`/games/${details.game_id}`);
 }
 
@@ -229,25 +243,21 @@ function renameFile(imagesrc, gameTitle) {
 
 // function to delete file; primarily for game cover images
 async function deleteFile(filePath) {
-  console.log(
-    path.join(__dirname, "..", "public", "images", `${filePath}.jpg`)
-  );
-  try {
-    await fs.unlink(
-      path.join(__dirname, "..", "public", "images", `${filePath}.jpg`)
-    );
-    console.log(`File deleted successfully: ${filePath}`);
-  } catch (err) {
-    if (err.code === "ENOENT") {
-      console.log("Error deleting file:", err);
-      throw err;
+  await fs.unlink(
+    path.join(__dirname, "..", "public", "images", `${filePath}.jpg`),
+    (err) => {
+      if (err) {
+        console.error("An error occured:", err);
+      } else {
+        console.log("File deleted successfully!");
+      }
     }
-  }
+  );
 }
 
 async function postNewGame(req, res) {
   const details = req.body;
-  console.log(details, req);
+  console.log("LOOK HERE NOW", details, req);
   // check if file is submitted with form
   if (req.file) {
     renameFile(
