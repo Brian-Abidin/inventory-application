@@ -7,8 +7,13 @@
         <div class="details-wrapper">
             <div class="game-wrapper">
                 <div class="image-wrapper">
-                    <img class="game-image" src=<%= image %> alt="game cover" onerror="this.style.opacity = '0'" srcset="">
-                    <div class="cover-title"><%= title %></div>
+                    <div class="cover-image-wrapper">
+                        <% if(fileExists){ %>
+                            <img class="game-image" src=<%= image %> alt="game cover" onerror="this.style.opacity = '0'" srcset="">
+                        <% } else { %>
+                            <div class="cover-title"><%= title %></div>
+                        <% } %>
+                    </div>
                     <div class="item-quantity">Price: $<%= price %></div>
                     <div class="item-quantity">Quantity: <%= quantity %></div>
                     <div class="button-wrapper">
