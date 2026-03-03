@@ -94,8 +94,9 @@ a {
   color: rgb(235, 235, 235);
 }
 
-a:hover {
-  color: #bebebe;
+.dev-link:hover,
+.genre-link:hover {
+  background-color: rgb(102, 102, 102);
   transition: color 0.2s ease-in-out;
 }
 
@@ -122,18 +123,50 @@ a:hover {
   margin-top: 10px;
 }
 
+.developer,
+.genre {
+  width: 100%;
+  padding-top: 10px;
+}
+
 .genre-title,
 .dev-title {
   font-size: 20px;
+  background-color: rgb(77, 77, 77);
+  padding: 5px;
+  border-radius: 2px;
+}
+
+.dev-list-wrapper,
+.genre-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 150px;
+  overflow-y: auto;
+  scrollbar-color: rgb(102, 102, 102) #e0e0e0;
+  scrollbar-width: thin;
 }
 
 .genre-list,
 .dev-list {
+  width: 100%;
   font-size: 18px;
 }
 
+.dev-link,
+.genre-link {
+  display: flex;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: grab;
+  border-radius: 2px;
+  border-bottom: 1px solid rgb(102, 102, 102);
+}
+
 ul {
-  list-style-type: none;
+  list-style: none;
   margin-left: 20px;
   padding: 10px;
 }
@@ -242,19 +275,19 @@ ul {
 }
 
 .game-genre {
-  border-bottom: 1px solid rgb(134, 134, 134);
+  border-bottom: 1px solid rgb(102, 102, 102);
   padding-bottom: 10px;
 }
 
 .bottom-content {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
   margin-top: 10px;
   border-radius: 5px;
-  margin: 0 20px 0 20px;
-}
-
-.bottom-content .top,
-.bottom-content .bottom {
-  margin: 10px;
+  margin: 20px;
 }
 
 .search-result {
@@ -632,6 +665,16 @@ footer {
 }
 
 @media screen and (max-width: 550px) {
+  .genre-title,
+  .dev-title {
+    font-size: 18px;
+  }
+
+  .dev-link,
+  .genre-link {
+    font-size: 14px;
+  }
+
   .index-greeting {
     font-size: 24px;
   }
