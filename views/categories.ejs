@@ -11,9 +11,9 @@
             <div class="developer">
                 <h3 class="dev-title">Sort by Developer:</h3>
                 <nav>
-                    <ul>
+                    <ul class="dev-list-wrapper">
                         <% for(const dev of developers){ %>
-                            <li class="dev-list"><a href="/search/dev/?dev=<%= dev %>"><%= dev %></a></li>
+                            <li class="dev-list"><a class="dev-link" href="/search/dev/?dev=<%= dev %>"><%= dev %></a></li>
                         <%}%>
                     </ul>
                 </nav>
@@ -21,9 +21,9 @@
             <div class="genre">
                 <h3 class="genre-title">Sort by Genre:</h3>
                 <nav>
-                    <ul>
+                    <ul class="genre-list-wrapper">
                         <% for(const genre of genres){ %>
-                            <li class="genre-list"><a href="/search/genre/?genre=<%= genre %>" ><%= genre %></a></li>
+                            <li class="genre-list"><a class="genre-link" href="/search/genre/?genre=<%= genre %>" ><%= genre %></a></li>
                         <%}%>
                     </ul>
                 </nav>
