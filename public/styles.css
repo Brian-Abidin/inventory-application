@@ -317,6 +317,7 @@ ul {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: min-content;
+  grid-auto-rows: min-content;
   grid-gap: 10px;
   margin: 5px;
   width: fit-content;
