@@ -66,8 +66,7 @@ async function main() {
   const client = new Client({
     // This is the connection for local hosting
     // postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@localhost:${process.env.DB_PORT}/${process.env.DB_NAME}
-    connectionString:
-      "postgresql://inventory_application_db_gkhx_user:tiQyKVVPgI9QXL7hZf7p53r3bYUhJd2v@dpg-d6k9l1vafjfc7393phr0-a/inventory_application_db_gkhx"
+    connectionString: process.env.DB_CONNECTIONSTRING
   });
   await client.connect();
   await client.query(SQL);
