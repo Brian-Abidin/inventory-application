@@ -2,7 +2,7 @@ const pool = require("./pool");
 
 async function getAllData() {
   const { rows } = await pool.query(
-    "SELECT games.id AS game_id, games.name, games.description, games.quantity, games.price, devs.name AS dev, genres.name AS genre FROM games INNER JOIN games_devs ON games.id = games_devs.game_id INNER JOIN devs ON games_devs.dev_id = devs.id INNER JOIN games_genres ON games.id = games_genres.game_id INNER JOIN genres ON games_genres.genre_id = genres.id"
+    "SELECT games.id AS game_id, games.name, games.description, games.quantity, games.price, devs.name AS dev, genres.name AS genre FROM public.games INNER JOIN public.games_devs ON games.id = games_devs.game_id INNER JOIN public.devs ON games_devs.dev_id = devs.id INNER JOIN public.games_genres ON games.id = games_genres.game_id INNER JOIN public.genres ON games_genres.genre_id = genres.id"
   );
   return rows;
 }
@@ -10,74 +10,74 @@ async function getAllData() {
 async function updateGamesTable(name, description, id, price, quantity) {
   console.log(name, description, id);
   await pool.query(
-    "UPDATE games SET name = $1, description = $2, price = $3, quantity = $4 WHERE id = $5",
+    "UPDATE public.games SET name = $1, description = $2, price = $3, quantity = $4 WHERE id = $5",
     [name, description, price, quantity, id]
   );
 }
 
 async function removeNoChildDevs() {
   await pool.query(
-    "DELETE FROM devs WHERE NOT EXISTS (SELECT 1 FROM games_devs WHERE games_devs.dev_id = devs.id)"
+    "DELETE FROM public.devs WHERE NOT EXISTS (SELECT 1 FROM public.games_devs WHERE games_devs.dev_id = devs.id)"
   );
 }
 
 async function removeNoChildGenres() {
   await pool.query(
-    "DELETE FROM genres WHERE NOT EXISTS (SELECT 1 FROM games_genres WHERE games_genres.genre_id = genres.id)"
+    "DELETE FROM public.genres WHERE NOT EXISTS (SELECT 1 FROM public.games_genres WHERE games_genres.genre_id = genres.id)"
   );
 }
 
 async function updateDevsTable(devs) {
   await pool.query(
-    "INSERT INTO devs (name) VALUES ($1) ON CONFLICT (name) DO NOTHING",
+    "INSERT INTO public.devs (name) VALUES ($1) ON CONFLICT (name) DO NOTHING",
     [devs]
   );
 }
 
 async function updateGenresTable(genre) {
   await pool.query(
-    "INSERT INTO genres (name) VALUES ($1) ON CONFLICT (name) DO NOTHING",
+    "INSERT INTO public.genres (name) VALUES ($1) ON CONFLICT (name) DO NOTHING",
     [genre]
   );
 }
 
 async function updateGamesGenresTable(name, genre) {
   await pool.query(
-    "INSERT INTO games_genres (game_id, genre_id) WITH t1 AS ( SELECT id FROM games WHERE name = $1), t2 AS ( SELECT id FROM genres WHERE name = $2) SELECT t1.id, t2.id FROM t1, t2",
+    "INSERT INTO public.games_genres (game_id, genre_id) WITH t1 AS ( SELECT id FROM public.games WHERE name = $1), t2 AS ( SELECT id FROM public.genres WHERE name = $2) SELECT t1.id, t2.id FROM t1, t2",
     [name, genre]
   );
 }
 
 async function updateGamesDevsTable(name, dev) {
   await pool.query(
-    "INSERT INTO games_devs (game_id, dev_id) WITH t1 AS ( SELECT id FROM games WHERE name = $1), t2 AS ( SELECT id FROM devs WHERE name = $2) SELECT t1.id, t2.id FROM t1, t2",
+    "INSERT INTO public.games_devs (game_id, dev_id) WITH t1 AS ( SELECT id FROM public.games WHERE name = $1), t2 AS ( SELECT id FROM public.devs WHERE name = $2) SELECT t1.id, t2.id FROM t1, t2",
     [name, dev]
   );
 }
 
 async function deleteGameTable(id) {
-  await pool.query("DELETE FROM games WHERE id = $1", [id]);
+  await pool.query("DELETE FROM public.games WHERE id = $1", [id]);
 }
 
 async function deleteDevTable(name) {
-  await pool.query("DELETE FROM devs WHERE name = $1", [name]);
+  await pool.query("DELETE FROM public.devs WHERE name = $1", [name]);
 }
 
 async function deleteGenreTable(name) {
-  await pool.query("DELETE FROM genres WHERE name = $1", [name]);
+  await pool.query("DELETE FROM public.genres WHERE name = $1", [name]);
 }
 
 async function deleteGamesDevsRelations(id) {
-  await pool.query("DELETE FROM games_devs WHERE game_id = $1", [id]);
+  await pool.query("DELETE FROM public.games_devs WHERE game_id = $1", [id]);
 }
 
 async function deleteGamesGenresRelations(id) {
-  await pool.query("DELETE FROM games_genres WHERE game_id = $1", [id]);
+  await pool.query("DELETE FROM public.games_genres WHERE game_id = $1", [id]);
 }
 
 async function insertGameTable(name, description, price, quantity) {
   await pool.query(
-    "INSERT INTO games (name, description, price, quantity) VALUES ($1, $2, $3, $4)",
+    "INSERT INTO public.games (name, description, price, quantity) VALUES ($1, $2, $3, $4)",
     [name, description, price, quantity]
   );
 }
