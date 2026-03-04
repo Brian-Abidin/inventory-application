@@ -1,9 +1,12 @@
 const basicAuth = require("express-basic-auth");
+require("dotenv").config();
 
 function myAuthorizer(username, password) {
-  const userMatches = basicAuth.safeCompare(username, "customuser");
-  const passwordMatches = basicAuth.safeCompare(password, "custompassword");
-  console.log(userMatches, passwordMatches, "HELLOOOOO");
+  const userMatches = basicAuth.safeCompare(username, process.env.ADMIN_USER);
+  const passwordMatches = basicAuth.safeCompare(
+    password,
+    process.env.ADMIN_PASSWORD
+  );
   return userMatches & passwordMatches;
 }
 
