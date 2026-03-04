@@ -12,14 +12,14 @@ usersRouter.get("/games/:id", usersController.getGameDetails);
 usersRouter.get("/search", usersController.getSearch);
 usersRouter.get("/search/genre", usersController.getGamesByGenre);
 usersRouter.get("/search/dev", usersController.getGamesByDev);
-usersRouter.get("/edit/:id", usersController.getEditGame);
-usersRouter.post("/edit", usersController.postEditGame);
+usersRouter.get("/edit/:id", authMiddleware, usersController.getEditGame);
+usersRouter.post("/edit", authMiddleware, usersController.postEditGame);
 usersRouter.get("/new", usersController.getNewGame);
 usersRouter.post(
   "/new",
   uploadController.upload.single("image"),
   usersController.postNewGame
 );
-usersRouter.post("/delete", usersController.postDeleteGame);
+usersRouter.post("/delete", authMiddleware, usersController.postDeleteGame);
 
 module.exports = usersRouter;
