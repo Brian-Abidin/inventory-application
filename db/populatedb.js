@@ -64,7 +64,10 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@localhost:${process.env.DB_PORT}/${process.env.DB_NAME}`
+    // This is the connection for local hosting
+    // postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@localhost:${process.env.DB_PORT}/${process.env.DB_NAME}
+    connectionString:
+      "postgresql://inventory_application_db_gkhx_user:tiQyKVVPgI9QXL7hZf7p53r3bYUhJd2v@dpg-d6k9l1vafjfc7393phr0-a/inventory_application_db_gkhx"
   });
   await client.connect();
   await client.query(SQL);
