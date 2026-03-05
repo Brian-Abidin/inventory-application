@@ -14,7 +14,7 @@ usersRouter.get("/search/genre", usersController.getGamesByGenre);
 usersRouter.get("/search/dev", usersController.getGamesByDev);
 usersRouter.get("/edit/:id", authMiddleware, usersController.getEditGame);
 usersRouter.post("/edit", authMiddleware, usersController.postEditGame);
-usersRouter.get("/new", usersController.getNewGame);
+usersRouter.get("/new", authMiddleware, usersController.getNewGame);
 usersRouter.post(
   "/new",
   uploadController.upload.single("image"),
